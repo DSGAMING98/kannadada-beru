@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "title": "Alar Kannada–English Dictionary",
+  "publisher": "V. Krishna / Alar",
+  "sourceUrl": "https://github.com/alar-dict/data",
+  "sourceRevision": "alar-dict/data master downloaded 2026-10-17",
+  "license": "ODC-ODbL 1.0",
+  "entryCount": 156650,
+  "distinctHeadwordCount": 139991,
+  "definitionCount": 247674,
+  "shards": [
+    {
+      "head": "ಅ",
+      "file": "shard-01.json",
+      "count": 15088
+    },
+    {
+      "head": "ಆ",
+      "file": "shard-02.json",
+      "count": 3953
+    },
+    {
+      "head": "ಇ",
+      "file": "shard-03.json",
+      "count": 2064
+    },
+    {
+      "head": "ಇತರೆ",
+      "file": "shard-04.json",
+      "count": 24
+    },
+    {
+      "head": "ಈ",
+      "file": "shard-05.json",
+      "count": 360
+    },
+    {
+      "head": "ಉ",
+      "file": "shard-06.json",
+      "count": 3980
+    },
+    {
+      "head": "ಊ",
+      "file": "shard-07.json",
+      "count": 422
+    },
+    {
+      "head": "ಋ",
+      "file": "shard-08.json",
+      "count": 151
+    },
+    {
+      "head": "ಎ",
+      "file": "shard-09.json",
+      "count": 2000
+    },
+    {
+      "head": "ಏ",
+      "file": "shard-10.json",
+      "count": 753
+    },
+    {
+      "head": "ಐ",
+      "file": "shard-11.json",
+      "count": 244
+    },
+    {
+      "head": "ಒ",
+      "file": "shard-12.json",
+      "count": 2004
+    },
+    {
+      "head": "ಓ",
+      "file": "shard-13.json",
+      "count": 474
+    },
+    {
+      "head": "ಔ",
+      "file": "shard-14.json",
+      "count": 139
+    },
+    {
+      "head": "ಕ",
+      "file": "shard-15.json",
+      "count": 21186
+    },
+    {
+      "head": "ಖ",
+      "file": "shard-16.json",
+      "count": 973
+    },
+    {
+      "head": "ಗ",
+      "file": "shard-17.json",
+      "count": 6767
+    },
+    {
+      "head": "ಘ",
+      "file": "shard-18.json",
+      "count": 528
+    },
+    {
+      "head": "ಙ",
+      "file": "shard-19.json",
+      "count": 3
+    },
+    {
+      "head": "ಚ",
+      "file": "shard-20.json",
+      "count": 4425
+    },
+    {
+      "head": "ಛ",
+      "file": "shard-21.json",
+      "count": 286
+    },
+    {
+      "head": "ಜ",
+      "file": "shard-22.json",
+      "count": 3794
+    },
+    {
+      "head": "ಝ",
+      "file": "shard-23.json",
+      "count": 240
+    },
+    {
+      "head": "ಞ",
+      "file": "shard-24.json",
+      "count": 2
+    },
+    {
+      "head": "ಟ",
+      "file": "shard-25.json",
+      "count": 350
+    },
+    {
+      "head": "ಠ",
+      "file": "shard-26.json",
+      "count": 158
+    },
+    {
+      "head": "ಡ",
+      "file": "shard-27.json",
+      "count": 674
+    },
+    {
+      "head": "ಢ",
+      "file": "shard-28.json",
+      "count": 96
+    },
+    {
+      "head": "ಣ",
+      "file": "shard-29.json",
+      "count": 6
+    },
+    {
+      "head": "ತ",
+      "file": "shard-30.json",
+      "count": 7290
+    },
+    {
+      "head": "ಥ",
+      "file": "shard-31.json",
+      "count": 90
+    },
+    {
+      "head": "ದ",
+      "file": "shard-32.json",
+      "count": 5134
+    },
+    {
+      "head": "ಧ",
+      "file": "shard-33.json",
+      "count": 1072
+    },
+    {
+      "head": "ನ",
+      "file": "shard-34.json",
+      "count": 8227
+    },
+    {
+      "head": "ಪ",
+      "file": "shard-35.json",
+      "count": 12591
+    },
+    {
+      "head": "ಫ",
+      "file": "shard-36.json",
+      "count": 368
+    },
+    {
+      "head": "ಬ",
+      "file": "shard-37.json",
+      "count": 7434
+    },
+    {
+      "head": "ಭ",
+      "file": "shard-38.json",
+      "count": 1763
+    },
+    {
+      "head": "ಮ",
+      "file": "shard-39.json",
+      "count": 10327
+    },
+    {
+      "head": "ಯ",
+      "file": "shard-40.json",
+      "count": 710
+    },
+    {
+      "head": "ರ",
+      "file": "shard-41.json",
+      "count": 2349
+    },
+    {
+      "head": "ಱ",
+      "file": "shard-42.json",
+      "count": 75
+    },
+    {
+      "head": "ಲ",
+      "file": "shard-43.json",
+      "count": 1570
+    },
+    {
+      "head": "ವ",
+      "file": "shard-44.json",
+      "count": 6073
+    },
+    {
+      "head": "ಶ",
+      "file": "shard-45.json",
+      "count": 2695
+    },
+    {
+      "head": "ಷ",
+      "file": "shard-46.json",
+      "count": 183
+    },
+    {
+      "head": "ಸ",
+      "file": "shard-47.json",
+      "count": 11187
+    },
+    {
+      "head": "ಹ",
+      "file": "shard-48.json",
+      "count": 6356
+    },
+    {
+      "head": "ಳ",
+      "file": "shard-49.json",
+      "count": 7
+    },
+    {
+      "head": "ೞ",
+      "file": "shard-50.json",
+      "count": 5
+    }
+  ]
+}

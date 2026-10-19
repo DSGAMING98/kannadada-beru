@@ -1,0 +1,18 @@
+import { z } from "zod";
+import { expressionSchema, normalizeKannada, type ExpressionRecord } from "@/lib/expressions";
+
+export const reviewImportRowSchema = z.object({ expression_id: z.uuid(), kannada_expression: z.string().min(1), romanization: z.string().min(1), english_meaning: z.string().min(1), usage_example_kannada: z.string().min(1), region_slugs: z.string().min(1), district_slugs: z.string(), locality: z.string().min(1), source_title: z.string().min(1), source_citation: z.string().min(1), source_url: z.union([z.literal(""), z.url()]), source_license: z.string(), publication_rights: z.enum(["cleared", "restricted", "unknown"]), contributor_attribution: z.string(), contributor_permission: z.enum(["yes", "no", "unknown"]), reviewer_id: z.string(), reviewer_display_name: z.string(), review_status: z.enum(["draft", "pending_review", "approved", "rejected", "needs_evidence"]), reviewed_at: z.string(), evidence_note: z.string().min(1), variation_notes: z.string(), register: z.enum(["informal", "neutral", "formal", "honorific", "other"]), concept_id: z.string() });
+export type ReviewImportRow = z.infer<typeof reviewImportRowSchema>;
+
+export function validateReviewImport(rows: unknown[]): { records: ExpressionRecord[]; errors: string[] } {
+  const records: ExpressionRecord[] = []; const errors: string[] = [];
+  rows.forEach((candidate, index) => {
+    const parsed = reviewImportRowSchema.safeParse(candidate);
+    if (!parsed.success) { errors.push(`Row ${index + 2}: ${parsed.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`).join("; ")}`); return; }
+    const row = parsed.data;
+    if (row.review_status === "approved" && (row.contributor_permission !== "yes" || row.publication_rights !== "cleared" || !row.reviewer_id || !row.reviewer_display_name || !row.reviewed_at)) { errors.push(`Row ${index + 2}: approved records require contributor permission, cleared rights, reviewer identity, and review timestamp.`); return; }
+    const record = expressionSchema.safeParse({ id: row.expression_id, expressionKannada: row.kannada_expression, normalizedKannada: normalizeKannada(row.kannada_expression), romanization: row.romanization, romanizedAliases: [], approvedAlternativeSpellings: [], englishMeaning: row.english_meaning, standardKannadaEquivalent: null, usageExampleKannada: row.usage_example_kannada, usageExampleEnglish: null, register: row.register, formalityNote: null, culturalNotes: null, linguisticNotes: row.variation_notes || null, localityText: row.locality, districtSlugs: row.district_slugs.split("|").filter(Boolean), linguisticRegionSlugs: row.region_slugs.split("|").filter(Boolean), sources: [{ id: `source-${row.expression_id}`, title: row.source_title, citation: row.source_citation, url: row.source_url || null, license: row.source_license || null, publicationRights: row.publication_rights }], contributorAttribution: row.contributor_attribution || null, evidenceNote: row.evidence_note, verificationStatus: row.review_status, review: row.reviewer_id && row.reviewer_display_name && row.reviewed_at ? { reviewerId: row.reviewer_id, reviewerDisplayName: row.reviewer_display_name, reviewerRole: "authorized_human", reviewedAt: row.reviewed_at, decisionNote: "Imported from the documented human-review workflow." } : null, audio: [], conceptId: row.concept_id || null, createdAt: new Date(0).toISOString(), updatedAt: new Date(0).toISOString() });
+    if (!record.success) errors.push(`Row ${index + 2}: ${record.error.issues.map((issue) => issue.message).join("; ")}`); else records.push(record.data);
+  });
+  return { records, errors };
+}

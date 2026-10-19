@@ -1,0 +1,46 @@
+import { z } from "zod";
+import { districts } from "@/lib/districts";
+
+export const verificationStateSchema = z.enum(["demonstration", "research_candidate", "community_review", "verified", "rejected"]);
+const researchSourceSchema = z.object({ title: z.string(), url: z.url(), note: z.string() });
+const regionalLanguageSchema = z.object({ nameKannada: z.string(), nameEnglish: z.string(), relationship: z.string(), contextKannada: z.string(), contextEnglish: z.string(), sourceUrl: z.url() });
+export const regionSchema = z.object({
+  id: z.uuid(), slug: z.string().regex(/^[a-z0-9-]+$/), nameKannada: z.string().min(1), nameEnglish: z.string().min(1), romanizedName: z.string().min(1), alternativeNames: z.array(z.string()), geographicDescription: z.string().min(1), languageVarietySummary: z.string().min(1), culturalContext: z.string().min(1), languageProfiles: z.array(regionalLanguageSchema).default([]), verificationStatus: verificationStateSchema, confidence: z.enum(["low", "medium", "high"]), sourceNote: z.string().min(1), associatedDistrictSlugs: z.array(z.string()), associationCaveat: z.string().min(1), researchSources: z.array(researchSourceSchema).min(1), relatedRegionSlugs: z.array(z.string()),
+});
+export type Region = z.infer<typeof regionSchema>;
+
+const dialectStudy = { title: "Building spoken dialect identification system in low-resource conditions", url: "https://doi.org/10.1007/s10772-025-10243-8", note: "The study describes four geographic Kannada dataset labels: Old Mysore, Maharashtra–Karnataka, Coastal Karnataka, and Hyderabad Karnataka." };
+const modernKannadaManual = { title: "A Manual of Modern Kannada", url: "https://hasp.ub.uni-heidelberg.de/catalog/book/736", note: "Open-access scholarly manual discussing broad southern, northern, and western/coastal regional varieties and coastal multilingualism." };
+
+export const regions = z.array(regionSchema).parse([
+  {
+    id: "2fc1bd48-acde-4ff6-9ac7-f9bb63283380", slug: "uttara-karnataka", nameKannada: "ಉತ್ತರ ಕರ್ನಾಟಕ", nameEnglish: "North Karnataka", romanizedName: "Uttara Karnataka", alternativeNames: ["Maharashtra–Karnataka", "Dharwad Kannada"],
+    geographicDescription: "Across the northern plateau, Kannada carries the rhythms of Dharwad, Belagavi, Vijayapura and the surrounding countryside, shaped by trade, music, farming and centuries of contact with neighbouring languages.",
+    languageVarietySummary: "North Karnataka is home to many local speaking styles rather than one uniform dialect. Vocabulary, cadence and familiar expressions can change from town to town and between communities.",
+    culturalContext: "Vachana traditions, Hindustani music, theatre, foodways and everyday rural life all colour the region’s linguistic identity. Age, community, work and movement continue to shape how Kannada is spoken here.",
+    verificationStatus: "research_candidate", confidence: "medium", sourceNote: "This regional portrait follows named linguistic publications while recognising natural overlap between communities and places.",
+    associatedDistrictSlugs: ["bagalkote", "belagavi", "dharwad", "gadag", "haveri", "vijayapura"], associationCaveat: "District links are starting points for exploration; local language traditions naturally overlap.",
+    researchSources: [dialectStudy, modernKannadaManual], relatedRegionSlugs: ["hale-mysuru", "kalyana-karnataka"],
+  },
+  {
+    id: "ee9d54e4-1c22-4f2d-8f49-12f8444b7d1d", slug: "karaavali", nameKannada: "ಕರಾವಳಿ", nameEnglish: "Coastal Karnataka", romanizedName: "Karaavali", alternativeNames: ["Coastal Kannada", "Mangaluru Kannada"],
+    geographicDescription: "Between the Western Ghats and the Arabian Sea, Karavali is a deeply multilingual coast shaped by ports, pilgrimage routes, fishing communities, monsoon landscapes and centuries of exchange.",
+    languageVarietySummary: "Kannada on the coast lives beside Tulu, Konkani, Beary, Malayalam and other community languages. Its words and cadence reflect a region where languages have met without losing their own identities.",
+    culturalContext: "Tulu is a distinct Dravidian language—not a Kannada dialect—and is central to the living culture of Tulunadu, especially in Dakshina Kannada and Udupi. Bhoota Kola, Yakshagana, paddanas, temple towns, coastal cuisine and seafaring memory give the region its unmistakable character.",
+    languageProfiles: [{ nameKannada: "ತುಳು", nameEnglish: "Tulu", relationship: "Distinct Dravidian language of the coast · ಕರಾವಳಿಯ ಸ್ವತಂತ್ರ ದ್ರಾವಿಡ ಭಾಷೆ", contextKannada: "ತುಳು ತುಳುನಾಡಿನ ಜೀವಂತ ಭಾಷೆ. ಭೂತಕೋಲದ ಪಾಡ್ದನಗಳು, ಜನಪದ ಕಥೆಗಳು, ಕೆಲವು ಸ್ಥಳೀಯ ಪ್ರದರ್ಶನ ಪರಂಪರೆಗಳು, ಮನೆಮಾತು ಮತ್ತು ಕರಾವಳಿ ಸ್ಮೃತಿಯಲ್ಲಿ ಅದರ ಆಳವಾದ ಪಾತ್ರವಿದೆ. ಇದನ್ನು ಕನ್ನಡದ ಉಪಭಾಷೆ ಎಂದು ಗುರುತಿಸಬಾರದು.", contextEnglish: "Tulu is a living language of Tulunadu, deeply present in Bhoota Kola paddanas, oral stories, local performance traditions, home life, and coastal memory. It must not be labelled as a dialect of Kannada.", sourceUrl: "https://dk.nic.in/en/" }],
+    verificationStatus: "research_candidate", confidence: "medium", sourceNote: "This portrait brings together coastal language scholarship, district material and official mother-tongue data.", associatedDistrictSlugs: ["dakshina-kannada", "udupi", "uttara-kannada"], associationCaveat: "The coastal districts are gateways for discovery; every community adds its own language story.", researchSources: [dialectStudy, modernKannadaManual, { title: "Dakshina Kannada district official profile", url: "https://dk.nic.in/en/", note: "The district's official profile lists Kannada and Tulu among its languages and describes the coast's cultural setting." }, { title: "Census of India C-16: Mother tongue, Karnataka", url: "https://censusindia.gov.in/nada/index.php/catalog/10208", note: "The official 2011 mother-tongue table records Tulu separately for Karnataka." }], relatedRegionSlugs: ["uttara-karnataka", "hale-mysuru"],
+  },
+  {
+    id: "b738a58e-92d5-4380-9f92-acde58843cf5", slug: "hale-mysuru", nameKannada: "ಹಳೆ ಮೈಸೂರು", nameEnglish: "Old Mysuru", romanizedName: "Hale Mysuru", alternativeNames: ["Old Mysore", "Mysuru Kannada", "Southern Kannada"],
+    geographicDescription: "The southern interior stretches from Mysuru’s historic heartland through the Cauvery basin, Bengaluru’s changing cityscape and the hills and forests of neighbouring districts.", languageVarietySummary: "Often associated with Mysuru Kannada, this wide region contains many local voices. Urban speech, farming communities, borderlands and older town traditions each add their own vocabulary and cadence.", culturalContext: "Courtly literature, theatre, folk performance, silk, sandalwood, coffee country and the modern technology corridor all meet here. No voice is more ‘pure’ than another; each belongs to its lived setting.", verificationStatus: "research_candidate", confidence: "medium", sourceNote: "This portrait follows established regional descriptions while celebrating the variety within southern Karnataka.", associatedDistrictSlugs: ["bengaluru-rural", "bengaluru-south", "bengaluru-urban", "chamarajanagar", "chikkaballapur", "hassan", "kodagu", "kolar", "mandya", "mysuru", "tumakuru"], associationCaveat: "District links are invitations to explore, and local language traditions often overlap.", researchSources: [dialectStudy, modernKannadaManual], relatedRegionSlugs: ["uttara-karnataka", "karaavali"],
+  },
+  {
+    id: "cd85358b-cdc7-4ace-a023-d619f5279428", slug: "kalyana-karnataka", nameKannada: "ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ", nameEnglish: "Kalyana Karnataka", romanizedName: "Kalyana Karnataka", alternativeNames: ["Hyderabad Karnataka", "Gulbarga Kannada"],
+    geographicDescription: "Kalyana Karnataka spans the Deccan’s northeastern plains, fort cities and river valleys, carrying the layered histories of Bidar, Kalaburagi, Raichur, Ballari and Vijayanagara.", languageVarietySummary: "Kannada here meets Dakhni Urdu, Marathi, Telugu and Lambani traditions. The result is not one fixed dialect but a rich family of local forms, accents and shared expressions.", culturalContext: "Vachana heritage, Bahmani architecture, Sufi traditions, craft, agriculture and the monumental landscape of Hampi all shape the region’s cultural memory and everyday speech.", verificationStatus: "research_candidate", confidence: "medium", sourceNote: "This portrait uses the contemporary regional name while keeping historical terminology available in its linked sources.", associatedDistrictSlugs: ["ballari", "bidar", "kalaburagi", "koppal", "raichur", "vijayanagara", "yadgiri"], associationCaveat: "Districts offer a route into the story; languages and communities cross every administrative boundary.", researchSources: [dialectStudy], relatedRegionSlugs: ["uttara-karnataka", "hale-mysuru"],
+  },
+]);
+
+const districtSlugs = new Set(districts.map(({ slug }) => slug));
+for (const region of regions) for (const slug of region.associatedDistrictSlugs) if (!districtSlugs.has(slug)) throw new Error(`Unknown district association: ${slug}`);
+export function getRegionBySlug(slug: string): Region | undefined { return regions.find((region) => region.slug === slug); }
+export function getRegionsForDistrict(slug: string): Region[] { return regions.filter((region) => region.associatedDistrictSlugs.includes(slug)); }

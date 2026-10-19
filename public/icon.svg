@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kannadada Beru logo">
+  <rect width="512" height="512" rx="112" fill="#7a1f2b"/>
+  <circle cx="256" cy="234" r="142" fill="#f0b323"/>
+  <path d="M145 180c62 2 101 27 111 76 10-49 49-74 111-76-8 60-42 93-88 98 31 26 47 64 47 114h-40c0-58-11-92-30-110-19 18-30 52-30 110h-40c0-50 16-88 47-114-46-5-80-38-88-98Z" fill="#7a1f2b"/>
+  <path d="M256 116v170" stroke="#fff8ec" stroke-width="18" stroke-linecap="round"/>
+</svg>

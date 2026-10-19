@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.local
+.env.*.local
+!.env.example
+.vercel/
+*.log
+*.tsbuildinfo
+tmp/
+.codex-pdf-review/
+.codex-presentation-build/
+
+# Private contributions, local recordings, and dataset working copies
+recordings/
+data/private/
+data/raw/
+*.wav
+*.m4a
+*.webm
+
+# Android build output and signing material
+android/.gradle/
+android/local.properties
+android/**/build/
+*.jks
+*.keystore
+keystore.properties
