@@ -158,6 +158,26 @@ test("regional voice intake exports a canonically named reviewed package", async
   await expect(page.getByText(/ಧ್ವನಿ ಮತ್ತು ಅದರ ಪರಿಶೀಲಿತ ಮಾಹಿತಿ ಕಡತಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿದೆ|Audio and its reviewed metadata sidecar were exported/i)).toBeVisible();
 });
 
+test("regional audio contribution is private, consent-led and mobile ready", async ({ page }) => {
+  await page.goto("/contribute/audio");
+  await expect(page.getByRole("heading", { name: /ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿ ಕೊಡುಗೆ ನೀಡಿ|Contribute a regional Kannada voice/i })).toBeVisible();
+  await expect(page.locator(".audio-prompt-list article")).toHaveCount(5);
+  await page.getByLabel("Self-identified region").selectOption("mysuru");
+  await page.getByLabel("Contribution audio").setInputFiles("public/audio/kannada/neeru.ogg");
+  await page.getByLabel("Exact Kannada words spoken").fill("hegiddiri");
+  await page.getByLabel("Contributor district").fill("Mysuru");
+  await page.getByLabel("Contributor years lived there").fill("20");
+  await page.getByLabel("Contribution recording date").fill("2026-10-22");
+  await page.getByLabel("Contributor access code").fill("invalid-test-code");
+  await page.getByLabel("Consent name or signature").fill("Consenting speaker");
+  await page.locator('input[name="adultConfirmed"]').check();
+  await page.locator('input[name="consentToReviewAndPublish"]').check();
+  await page.getByRole("button", { name: /ಪರಿಶೀಲನೆಗೆ ಸಲ್ಲಿಸಿ|Submit for review/i }).click();
+  await expect(page.locator(".form-message")).toContainText(/ಕಡ್ಡಾಯ ಮಾಹಿತಿ ಮತ್ತು ಸಮ್ಮತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ|Transcript must contain Kannada script/i);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("Karavali offers a credited human Tulu recording and district journeys", async ({ page }) => {
   await page.goto("/regions/karaavali");
   await expect(page.getByText("Na alli hothe")).toBeVisible();
@@ -172,7 +192,7 @@ test("Karavali offers a credited human Tulu recording and district journeys", as
 });
 
 test("all public release routes are available", async ({ page }) => {
-  for (const route of ["/", "/explore", "/voices", "/voices/intake", "/language", "/dictionary", "/play", "/compare", "/contribute", "/about", "/districts/mysuru", "/regions/karaavali"]) {
+  for (const route of ["/", "/explore", "/voices", "/voices/intake", "/contribute/audio", "/language", "/dictionary", "/play", "/compare", "/contribute", "/about", "/districts/mysuru", "/regions/karaavali"]) {
     const response = await page.goto(route);
     expect(response?.status(), route).toBe(200);
     await expect(page.locator("main")).toBeVisible();
