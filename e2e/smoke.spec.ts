@@ -122,7 +122,7 @@ test("regional voices showcase keeps evidence and language identity together", a
   await expect(page.locator(".voices-ledger")).toContainText(/8\s*(ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ನುಡಿಗಳು|source-documented usages)/i);
   await expect(page.locator(".voices-ledger")).toContainText(/0\s*(ಪ್ರಕಟಿತ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿಗಳು|published regional Kannada voices)/i);
   await expect(page.locator(".pronunciation-stats")).toContainText(/12\s*(ಸಾಮಾನ್ಯ ಕನ್ನಡ ಧ್ವನಿಗಳು|general Kannada voices)/i);
-  await expect(page.getByRole("button", { name: /recording needed/i })).toHaveCount(36);
+  await expect(page.getByRole("button", { name: /recording needed/i })).toHaveCount(15);
   await expect(page.getByRole("button", { name: /recording needed/i }).first()).toBeDisabled();
   const pronunciationSearch = page.getByPlaceholder(/neeru, water/);
   await pronunciationSearch.fill("water");
@@ -139,6 +139,25 @@ test("regional voices showcase keeps evidence and language identity together", a
   await expect(page.getByText(/ಈ ಧ್ವನಿ ತುಳು ಭಾಷೆಯದ್ದು|This recording is Tulu and is not counted as regional Kannada/i)).toBeVisible();
 });
 
+test("regional voice intake exports a canonically named reviewed package", async ({ page }) => {
+  await page.goto("/voices/intake");
+  await expect(page.getByRole("heading", { name: /ನೈಜ ಪ್ರಾದೇಶಿಕ ಧ್ವನಿ ಸಂಗ್ರಹ|Authentic regional voice intake/i })).toBeVisible();
+  await page.getByLabel("Speaker’s self-reported region").selectOption("mysuru");
+  await page.getByLabel("Record or choose audio").setInputFiles("public/audio/kannada/neeru.ogg");
+  await page.getByLabel("Exact spoken Kannada transcript").fill("ಹೇಗಿದ್ದೀರಿ?");
+  await page.getByLabel("District where speaker grew up").fill("Mysuru");
+  await page.getByLabel("Approximate years lived there").fill("20");
+  await page.getByLabel("Recording date").fill("2026-10-22");
+  await page.getByLabel("Consent reference").fill("private-consent-001");
+  await page.getByLabel("Human reviewer name or ID").fill("reviewer-1");
+  await page.getByLabel("Review date").fill("2026-10-22");
+  for (const checkbox of await page.locator('.audio-intake-form input[type="checkbox"]').all()) await checkbox.check();
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", { name: /ಧ್ವನಿ \+ ಮಾಹಿತಿ ರಫ್ತು ಮಾಡಿ|Export audio \+ metadata/i }).click();
+  expect((await downloadPromise).suggestedFilename()).toBe("warm-greeting-mysuru.ogg");
+  await expect(page.getByText(/ಧ್ವನಿ ಮತ್ತು ಅದರ ಪರಿಶೀಲಿತ ಮಾಹಿತಿ ಕಡತಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿದೆ|Audio and its reviewed metadata sidecar were exported/i)).toBeVisible();
+});
+
 test("Karavali offers a credited human Tulu recording and district journeys", async ({ page }) => {
   await page.goto("/regions/karaavali");
   await expect(page.getByText("Na alli hothe")).toBeVisible();
@@ -153,7 +172,7 @@ test("Karavali offers a credited human Tulu recording and district journeys", as
 });
 
 test("all public release routes are available", async ({ page }) => {
-  for (const route of ["/", "/explore", "/voices", "/language", "/dictionary", "/play", "/compare", "/contribute", "/about", "/districts/mysuru", "/regions/karaavali"]) {
+  for (const route of ["/", "/explore", "/voices", "/voices/intake", "/language", "/dictionary", "/play", "/compare", "/contribute", "/about", "/districts/mysuru", "/regions/karaavali"]) {
     const response = await page.goto(route);
     expect(response?.status(), route).toBe(200);
     await expect(page.locator("main")).toBeVisible();

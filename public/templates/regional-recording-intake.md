@@ -1,6 +1,6 @@
 # Regional Kannada recording consent and intake
 
-This form is for a small pronunciation pilot covering the same Kannada prompts in Mysuru, Dharwad and Kalaburagi. Participation is voluntary. A recording is not published until the speaker and reviewer checks are complete.
+This form is for a five-meaning pilot across Mysuru, Dharwad and Kalaburagi. Speakers should express each shared meaning in their own natural regional Kannada; they do not need to repeat identical wording. Participation is voluntary. A recording is not published until the speaker and reviewer checks are complete.
 
 ## Speaker and place
 
@@ -17,9 +17,9 @@ Do not collect a street address, phone number, government ID, or unrelated perso
 
 ## Recording
 
-- Exact Kannada prompt:
-- Romanized prompt:
-- English meaning:
+- Prompt ID and intended shared meaning:
+- Exact Kannada words actually spoken:
+- Romanized transcript (optional):
 - Recording type: isolated word / read sentence / spontaneous explanation
 - Raw file name:
 - Date recorded:
@@ -41,6 +41,7 @@ Date:
 
 - [ ] Speaker replayed and approved the final clip.
 - [ ] Transcript exactly matches the audio.
+- [ ] The spoken expression preserves the selected prompt’s intended meaning.
 - [ ] Region metadata is self-reported and not inferred from a current address.
 - [ ] A second native/community reviewer confirmed the prompt and naturalness.
 - [ ] Rights and chosen public attribution were checked.

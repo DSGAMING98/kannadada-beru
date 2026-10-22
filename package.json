@@ -15,6 +15,7 @@
     "test:e2e:live": "playwright test --config=playwright.live.config.ts",
     "screenshots:readme": "node scripts/capture-readme-screenshots.mjs",
     "data:build:alar": "node scripts/build-alar-dataset.mjs",
+    "audio:import": "node scripts/import-regional-audio.mjs",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
   },
   "dependencies": {

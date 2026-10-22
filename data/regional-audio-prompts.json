@@ -1,0 +1,37 @@
+[
+  {
+    "id": "warm-greeting",
+    "number": 1,
+    "meaningEnglish": "Warmly ask someone: How are you?",
+    "meaningKannada": "ಆತ್ಮೀಯವಾಗಿ ಒಬ್ಬರನ್ನು ‘ಹೇಗಿದ್ದೀರಿ?’ ಎಂದು ಕೇಳಿ",
+    "speakerDirection": "Say this naturally as you would to someone you know. Regional wording is welcome."
+  },
+  {
+    "id": "meal-check",
+    "number": 2,
+    "meaningEnglish": "Ask someone: Have you eaten?",
+    "meaningKannada": "ಒಬ್ಬರನ್ನು ‘ಊಟ ಆಯಿತೇ?’ ಎಂದು ಕೇಳಿ",
+    "speakerDirection": "Use the everyday expression natural to your region."
+  },
+  {
+    "id": "come-here",
+    "number": 3,
+    "meaningEnglish": "Ask someone nearby to come here.",
+    "meaningKannada": "ಹತ್ತಿರದಲ್ಲಿರುವ ಒಬ್ಬರನ್ನು ‘ಇಲ್ಲಿಗೆ ಬನ್ನಿ’ ಎಂದು ಕರೆಯಿರಿ",
+    "speakerDirection": "Speak naturally and politely in your regional Kannada."
+  },
+  {
+    "id": "heavy-rain",
+    "number": 4,
+    "meaningEnglish": "Say: It is raining heavily today.",
+    "meaningKannada": "‘ಇಂದು ತುಂಬಾ ಮಳೆ ಬರುತ್ತಿದೆ’ ಎಂಬ ಅರ್ಥವನ್ನು ಸಹಜವಾಗಿ ಹೇಳಿ",
+    "speakerDirection": "Use your normal local words and pronunciation."
+  },
+  {
+    "id": "go-home",
+    "number": 5,
+    "meaningEnglish": "Suggest: Let us go home.",
+    "meaningKannada": "‘ನಾವು ಮನೆಗೆ ಹೋಗೋಣ’ ಎಂದು ಸಲಹೆ ನೀಡಿ",
+    "speakerDirection": "Say it the way you naturally would with family or friends."
+  }
+]

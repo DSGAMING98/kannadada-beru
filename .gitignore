@@ -23,6 +23,10 @@ data/raw/
 *.wav
 *.m4a
 *.webm
+regional-audio-intake/inbox/*
+!regional-audio-intake/inbox/.gitkeep
+!public/audio/regional/
+!public/audio/regional/**
 
 # Android build output and signing material
 android/.gradle/
