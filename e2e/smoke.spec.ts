@@ -121,6 +121,16 @@ test("regional voices showcase keeps evidence and language identity together", a
   await expect(page.getByRole("heading", { name: /ನುಡಿ, ನೆಲ ಮತ್ತು ದನಿಯ ನಡುವೆ|Where words meet place and voice/i })).toBeVisible();
   await expect(page.locator(".voices-ledger")).toContainText(/8\s*(ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ನುಡಿಗಳು|source-documented usages)/i);
   await expect(page.locator(".voices-ledger")).toContainText(/0\s*(ಪ್ರಕಟಿತ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿಗಳು|published regional Kannada voices)/i);
+  await expect(page.locator(".pronunciation-stats")).toContainText(/12\s*(ಸಾಮಾನ್ಯ ಕನ್ನಡ ಧ್ವನಿಗಳು|general Kannada voices)/i);
+  await expect(page.getByRole("button", { name: /recording needed/i })).toHaveCount(36);
+  await expect(page.getByRole("button", { name: /recording needed/i }).first()).toBeDisabled();
+  const pronunciationSearch = page.getByPlaceholder(/neeru, water/);
+  await pronunciationSearch.fill("water");
+  await expect(page.locator(".pronunciation-card")).toHaveCount(1);
+  await expect(page.locator(".pronunciation-card h3")).toHaveText("ನೀರು");
+  const audioResponse = await page.request.get("/audio/kannada/neeru.ogg");
+  expect(audioResponse.status()).toBe(200);
+  expect(audioResponse.headers()["content-type"]).toMatch(/audio|ogg|octet-stream/);
   await page.getByLabel("Voice region").selectOption("uttara-karnataka");
   await expect(page.locator(".voice-story")).toHaveCount(5);
   await page.getByLabel("Search regional voices").fill("onion");
@@ -168,11 +178,16 @@ test("PWA release resources and offline shell are available", async ({ request }
   expect(worker.status()).toBe(200);
   expect(worker.headers()["cache-control"]).toContain("no-store");
   expect((await request.get("/offline")).status()).toBe(200);
+  expect((await request.get("/audio/kannada/neeru.ogg")).status()).toBe(200);
 });
 
 test("contribution page saves an explicit local draft without claiming submission", async ({ page }) => {
   await page.goto("/contribute");
   await expect(page.getByText(/ಖಾಸಗಿ ಸಾಧನ ಸಂಗ್ರಹ|Private on-device collection/)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /ಒಂದೇ ಪದದ ಧ್ವನಿ ಸಂಗ್ರಹ ಕಿಟ್|Same-word recording kit/ })).toBeVisible();
+  const consentTemplate = await page.request.get("/templates/regional-recording-intake.md");
+  expect(consentTemplate.status()).toBe(200);
+  expect(await consentTemplate.text()).toContain("Speaker replayed and approved");
   await page.getByLabel(/Kannada word or phrase/).fill("ಪರೀಕ್ಷೆ");
   await page.getByLabel("Romanized Kannada").fill("pareekshe");
   await page.getByLabel("Contextual English meaning").fill("test");

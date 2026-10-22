@@ -1,0 +1,4 @@
+record_id,prompt_id,kannada_prompt,romanization,meaning_english,region,district,speaker_alias,grew_up_in_district,years_in_region,recording_location,recording_type,consent_record_id,public_credit_preference,licence,raw_audio_file,approved_ogg_file,transcript_match,region_metadata_review,linguistic_review,rights_review,publication_status,review_notes
+pilot-mysuru-akka,akka,ಅಕ್ಕ,akka,elder sister,Mysuru,Mysuru,,,,isolated_word,,,,,,,,pending,pending,pending,not_ready,
+pilot-dharwad-akka,akka,ಅಕ್ಕ,akka,elder sister,Dharwad,Dharwad,,,,isolated_word,,,,,,,,pending,pending,pending,not_ready,
+pilot-kalaburagi-akka,akka,ಅಕ್ಕ,akka,elder sister,Kalaburagi,Kalaburagi,,,,isolated_word,,,,,,,,pending,pending,pending,not_ready,

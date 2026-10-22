@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState, useSyncExternalStore } from "react";
-import { CheckCircle2, Download, HardDrive, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Download, FileAudio, HardDrive, ShieldCheck } from "lucide-react";
 import { contributionDraftSchema } from "@/lib/contribution-contract";
 import { regions } from "@/lib/regions";
 import { useInterfaceLanguage } from "@/components/interface-language";
@@ -113,5 +113,10 @@ export function ContributionDraftForm() {
       <p className="form-message" aria-live="polite">{message}</p>
       <div className="integrity-note"><ShieldCheck aria-hidden="true" /><span>{language === "kn" ? "ರಫ್ತು ಮಾಡಿದ ದಾಖಲೆಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರಕಟವಾಗುವುದಿಲ್ಲ. ಮೂಲ, ಅನುಮತಿ ಮತ್ತು ನೈಜ ಬಳಕೆಯ ವಿವರಗಳನ್ನು ಗೌರವದಿಂದ ಕಾಪಾಡಲಾಗುತ್ತದೆ." : "Exported contributions are never published automatically. Source, permission and real-world context stay attached to every record."}</span></div>
     </form>
+    <aside className="recording-kit" aria-labelledby="recording-kit-title">
+      <FileAudio aria-hidden="true" />
+      <div><p className="eyebrow">{language === "kn" ? "ಮೈಸೂರು · ಧಾರವಾಡ · ಕಲಬುರಗಿ" : "Mysuru · Dharwad · Kalaburagi"}</p><h2 id="recording-kit-title">{language === "kn" ? "ಒಂದೇ ಪದದ ಧ್ವನಿ ಸಂಗ್ರಹ ಕಿಟ್" : "Same-word recording kit"}</h2><p>{language === "kn" ? "ಸ್ಥಳೀಯ ವಕ್ತಾರರ ಅನುಮತಿ, ಬೆಳೆದ ಜಿಲ್ಲೆ, ನಿಖರ ಪಠ್ಯ ಮತ್ತು ಎರಡನೇ ಮಾನವ ಪರಿಶೀಲನೆಯನ್ನು ಒಂದೇ ದಾಖಲೆಯಲ್ಲಿ ಇಡಿ. ಧ್ವನಿಯನ್ನು ಈ ತಾಣವು ನೇರವಾಗಿ ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ." : "Use one record to capture speaker consent, district of upbringing, the exact prompt and a second human review. This site does not upload or collect the recording itself."}</p></div>
+      <a className="button button-secondary" href="/templates/regional-recording-intake.md" download><Download size={18} />{language === "kn" ? "ಸಮ್ಮತಿ ನಮೂನೆ ಪಡೆಯಿರಿ" : "Download consent form"}</a>
+    </aside>
   </section>;
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, BookOpenText, Headphones, MapPin, Search, ShieldCheck, Volume2 } from "lucide-react";
 import { RegionalAudioPlayer } from "@/components/regional-audio-player";
+import { RegionalPronunciationExplorer } from "@/components/regional-pronunciation-explorer";
 import { useInterfaceLanguage } from "@/components/interface-language";
 import { regionalAudioSamples } from "@/lib/regional-audio";
 import { regionalCandidates } from "@/lib/regional-candidates";
@@ -25,6 +26,9 @@ export function RegionalVoicesShowcase() {
   }), [query, region]);
 
   return <section className="shell voices-workspace">
+    <RegionalPronunciationExplorer />
+
+    <div className="voices-section-heading"><p className="eyebrow">{language === "kn" ? "ಪ್ರಕಟಿತ ಮೂಲದಲ್ಲಿರುವ ಸ್ಥಳೀಯ ಬಳಕೆ" : "Regional usage in published sources"}</p><h2>{language === "kn" ? "ಪದದ ರೂಪ, ಅರ್ಥ ಮತ್ತು ನೆಲದ ಸಂದರ್ಭ" : "Word form, meaning and local context"}</h2></div>
     <div className="voices-promise"><Headphones aria-hidden="true" /><div><strong>{language === "kn" ? "ಕೇಳುವುದಕ್ಕೂ ಮೊದಲು ಅರ್ಥ ಮತ್ತು ಮೂಲವನ್ನು ನೋಡಿ" : "Meaning and source come before sound"}</strong><p>{language === "kn" ? "ಪ್ರಕಟಿತ ನುಡಿ, ಸಾಮಾನ್ಯ ಕನ್ನಡದ ಸಮೀಪದ ರೂಪ ಮತ್ತು ಸ್ಥಳೀಯ ಸಂದರ್ಭವನ್ನು ಒಂದೇ ಜಾಗದಲ್ಲಿ ನೋಡಬಹುದು. ನೈಜ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿ ಇನ್ನೂ ಅನುಮತಿ ಮತ್ತು ಸ್ಥಳೀಯ ಪರಿಶೀಲನೆಗಾಗಿ ಕಾಯುತ್ತಿದೆ." : "Each record keeps the published form, its closest standard comparison and local context together. Regional Kannada audio remains unpublished until permission and local review are complete."}</p></div></div>
 
     <div className="voices-controls">

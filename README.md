@@ -16,7 +16,7 @@ A Kannada-first, source-aware journey through Karnataka's words, places, voices,
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 [![PWA](https://img.shields.io/badge/PWA-Offline_ready-F4B942?style=flat-square&logo=pwa&logoColor=111111)](https://kannadada-beru.vercel.app)
-[![Unit tests](https://img.shields.io/badge/unit_tests-42_passing-176B55?style=flat-square)](https://github.com/DSGAMING98/kannadada-beru/actions)
+[![Unit tests](https://img.shields.io/badge/unit_tests-46_passing-176B55?style=flat-square)](https://github.com/DSGAMING98/kannadada-beru/actions)
 [![Browser journeys](https://img.shields.io/badge/browser_journeys-48_passing-176B55?style=flat-square)](https://github.com/DSGAMING98/kannadada-beru/actions)
 [![Code license](https://img.shields.io/badge/code-MIT-D6A637?style=flat-square)](LICENSE)
 
@@ -52,7 +52,7 @@ Built for **PS04 — Namma Kannada: Regional Language Explorer**, it is a comple
 
 ## ⚡ See the whole story in 90 seconds
 
-1. **[Open Many Living Voices](https://kannadada-beru.vercel.app/voices)** — explore eight sourced usages from North Karnataka and Kundapura with their meanings, localities, cultural setting and evidence status.
+1. **[Open Many Living Voices](https://kannadada-beru.vercel.app/voices)** — hear 12 credited General Kannada word recordings, then inspect the honest three-region comparison matrix alongside eight sourced regional usages.
 2. **[Explore Karnataka](https://kannadada-beru.vercel.app/explore)** — select any of 31 districts for a bilingual introduction, history, places, culture, language context, and official links.
 3. **[Search 156,650 dictionary entries](https://kannadada-beru.vercel.app/dictionary)** — browse by Kannada initial or search in Kannada, Romanized Kannada, and English.
 4. **[Visit Karavali](https://kannadada-beru.vercel.app/regions/karaavali)** — learn how Kannada and Tulu share the coast, then hear a credited human Tulu recording of `ಕುಡ್ಲ`.
@@ -61,9 +61,9 @@ Built for **PS04 — Namma Kannada: Regional Language Explorer**, it is a comple
 
 ## ✨ The experience at a glance
 
-| **156,650** | **31** | **4** | **8** | **1** | **10** |
+| **156,650** | **31** | **12** | **36** | **8** | **10** |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| dictionary entries | Karnataka districts | language regions | documented usages | credited Tulu recording | game rounds |
+| dictionary entries | Karnataka districts | CC0 Kannada references | evidence-gated regional slots | documented usages | game rounds |
 
 | Experience | What visitors can do |
 | --- | --- |
@@ -71,7 +71,7 @@ Built for **PS04 — Namma Kannada: Regional Language Explorer**, it is a comple
 | 🔎 **Kannada dictionary** | Search 139,991 headwords and 247,674 English definitions without downloading the whole corpus |
 | 🌊 **Regional stories** | Move through Bengaluru-Mysuru, Dharwad, Karavali, and Kalyana Karnataka; discover Tulu in its own linguistic context |
 | 🎧 **Many Living Voices** | Filter sourced regional expressions by place or meaning; see the published form, standard comparison, locality, context and source together |
-| 🔊 **Permission-led audio** | Hear a real human Tulu pronunciation with transcript, language, source, speaker credit, and reuse licence; no synthetic voice is presented as regional evidence |
+| 🔊 **Permission-led audio** | Hear 12 locally bundled CC0 General Kannada recordings with visible provenance; Mysuru, Dharwad and Kalaburagi controls remain disabled until matching consent and review records exist |
 | ↔️ **Thoughtful comparison** | Compare documented usage while keeping pronunciation, vocabulary, and regional identity meaningfully distinct |
 | 🎮 **Pada Beru** | Learn through a bilingual, touch-friendly vocabulary game with scores, streaks, hints, and optional speech |
 | 🤝 **Private contribution** | Prepare versioned records locally and export them deliberately—nothing is silently uploaded |
@@ -96,7 +96,11 @@ Built for **PS04 — Namma Kannada: Regional Language Explorer**, it is a comple
   </tr>
 </table>
 
-## 🎙️ A regional voice, with its story intact
+## 🎙️ Human voices, without invented regional claims
+
+The pronunciation explorer bundles 12 small CC0 Kannada recordings for reliable playback and offline use. Every clip retains its exact Commons source, speaker/uploader, date and licence. Because those source records do not publish speaker region, the app calls them **General Kannada human references**. Beside each word, Mysuru, Dharwad and Kalaburagi appear as disabled evidence-gated slots—36 in total, with zero falsely completed comparisons.
+
+The public-source audit also identifies IISc NISP speakers brought up in Mysore, Dharwad and Gulbarga. Their prompt sets do not form a ready same-word comparison, so no NISP clip is published. The included collection kit defines the shortest honest route to 30–36 consented local-speaker recordings.
 
 <p align="center">
   <a href="https://kannadada-beru.vercel.app/regions/karaavali">
@@ -113,7 +117,7 @@ The app began with a simple product question: **how can regional language knowle
 1. **A Kannada-first interface** — responsive typography, navigation, search, and learning flows were designed around Kannada rather than translated as an afterthought.
 2. **A lightweight language engine** — the open Alar dictionary was normalised into 50 alphabet shards so a 156K-entry resource remains quick on ordinary phones.
 3. **A district and region story layer** — all 31 districts received concise Kannada and English narratives, while the regional pages connect language to history, landscape, and culture.
-4. **A provenance-aware media model** — a recording appears only with a matching transcript, language, place, attribution, and permission record.
+4. **A provenance-aware media model** — General Kannada recordings retain source identity without a regional claim; a regional player unlocks only after transcript, speaker origin, attribution, permission and two human checks agree.
 5. **A privacy-first contribution flow** — community drafts use versioned local browser storage and deliberate JSON export; the public app does not quietly collect personal language data.
 6. **A release pipeline built around real journeys** — data validation, unit tests, production builds, Android-sized browser runs, desktop runs, and live HTTPS checks all guard the finished experience.
 
@@ -137,6 +141,11 @@ flowchart TB
     Atlas --> Districts[31 bilingual district profiles]
     Voices --> Records[8 source-documented regional usages]
     Voices --> Evidence[Meaning locality context and citation]
+    Voices --> General[12 local CC0 General Kannada references]
+    Voices --> Matrix[12 prompts x 3 regional evidence gates]
+    Matrix --> Mysuru[Mysuru recording slot]
+    Matrix --> Dharwad[Dharwad recording slot]
+    Matrix --> Kalaburagi[Kalaburagi recording slot]
     Voices --> Audio[Credited CC0 Tulu audio kept separate]
     Dictionary --> Shards[50 static Alar data shards]
     Game --> Learning[Curated bilingual learning set]
@@ -156,8 +165,11 @@ flowchart LR
     D[District and research sources] --> E[Attach place and citation]
     E --> F[Atlas and regional usage]
 
-    G[Human recording] --> H[Confirm transcript region credit and rights]
-    H --> I[Public pronunciation card]
+    G[Human recording] --> H[Confirm transcript speaker origin credit and rights]
+    H --> I[Speaker replay and second community review]
+    I --> J{Evidence complete?}
+    J -->|Yes| N[Enable regional Play]
+    J -->|No| O[Keep control disabled]
 
     K[Visitor contribution] --> L[Private on-device draft]
     L --> M[Explicit JSON export]
@@ -170,9 +182,9 @@ This separation is deliberate: a general dictionary definition is not automatica
 ```mermaid
 flowchart LR
     Source[Application and data] --> Validate[Schema and content validation]
-    Validate --> Unit[42 unit tests]
+    Validate --> Unit[46 unit tests]
     Unit --> Build[49 statically generated routes]
-    Build --> Browser[48 Android and desktop journeys]
+    Build --> Browser[48 passing Android and desktop journeys]
     Browser --> Deploy[Vercel production deployment]
     Deploy --> Live[Live HTTPS verification]
 ```
@@ -199,6 +211,9 @@ src/components/          Navigation, atlas, dictionary, audio and interaction UI
 src/lib/                 Search, validation, language data and storage contracts
 public/data/alar/        50 generated dictionary shards and their index
 public/data/             Regional records, geography and public source metadata
+public/audio/kannada/    12 CC0 OGG files and checksum-backed provenance manifest
+public/templates/        Speaker consent and regional recording intake form
+data/                    Regional pilot and editorial review ledgers
 e2e/                     Android-sized and desktop user-journey tests
 scripts/                 Dataset preparation, checks and screenshot tooling
 docs/                    Architecture, sources, research and product vision
@@ -227,10 +242,10 @@ pnpm audit --prod
 
 Current release evidence:
 
-- **42/42 unit tests** across 14 files
-- **48/48 browser journeys** across Android-sized and desktop Chrome
+- **46/46 unit tests** across 15 files
+- **48 passing production browser journeys** across Android-sized and desktop Chrome, including installed-PWA offline reopening
 - **49 generated routes** in the production build
-- Physical Android verification of the dictionary, game, navigation, and contribution flow
+- Physical Android verification is rerun before the final freeze whenever an authorized USB device is available
 - Zero known production dependency vulnerabilities at release verification
 
 ## 📚 Data, attribution, and reuse
@@ -238,7 +253,7 @@ Current release evidence:
 - **Dictionary:** derived from V. Krishna's *Alar Kannada–English Dictionary* under **ODC-ODbL 1.0**. The derived shards preserve attribution and share-alike obligations.
 - **Geography:** historical Census-2011-vintage boundary data from the DataMeet community, presented as geographic context—not as proof of dialect boundaries.
 - **Regional usage:** each public record carries its own source and context; it is not inferred from the general dictionary.
-- **Human audio:** the public `ಕುಡ್ಲ` Tulu recording is credited to **Deepakpadukone20**, sourced from Wikimedia Commons, and released as **CC0**.
+- **Human audio:** 12 General Kannada word recordings are bundled from Wikimedia Commons/Spell4Wiki under **CC0**, with checksums and source records; none carries a regional claim. The separate public `ಕುಡ್ಲ` Tulu recording is credited to **Deepakpadukone20** under **CC0**.
 [Data sources](docs/DATA_SOURCES.md) · [Architecture](docs/ARCHITECTURE.md) · [Regional language research](docs/KANNADA_DIALECT_RESEARCH.md) · [Speech dataset audit](docs/REGIONAL_AUDIO_DATASET_AUDIT.md) · [Product vision](docs/PRODUCT_VISION.md) · [Third-party notices](THIRD_PARTY_NOTICES.md)
 
 Original project source code is available under the [MIT License](LICENSE). Third-party datasets and media retain their own licences and attribution requirements.
@@ -250,7 +265,7 @@ Original project source code is available under the [MIT License](LICENSE). Thir
 - **More than a map:** every district opens into history, language, culture, and places worth exploring.
 - **A memorable centrepiece:** Many Living Voices turns regional-language evidence into a focused, searchable story rather than a loose list of words.
 - **Kannada is foundational:** the product structure, search behaviour, typography, storytelling, and game were shaped around Kannada from the start.
-- **Authenticity is visible:** the published Tulu audio is human, credited, transcript-matched, and permission-cleared; regional Kannada audio stays at zero until equivalent evidence exists.
+- **Authenticity is visible:** 12 human Kannada references are credited and integrity-checked without inventing speaker regions; all 36 Mysuru–Dharwad–Kalaburagi slots stay disabled until equivalent regional evidence exists.
 - **Privacy is understandable:** contribution data stays local unless the visitor explicitly exports it.
 - **Coherent language model:** the app keeps general vocabulary, regional usage, and human audio meaningfully distinct.
 
@@ -261,6 +276,9 @@ Original project source code is available under the [MIT License](LICENSE). Thir
 - [Kannada regional language research](docs/KANNADA_DIALECT_RESEARCH.md)
 - [Regional speech dataset audit](docs/REGIONAL_AUDIO_DATASET_AUDIT.md)
 - [4-minute live demo script](docs/DEMO_SCRIPT.md)
+- [Hackathon submission deck (PPTX)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_Submission_2026_RELEASE.pptx)
+- [Hackathon submission deck (PDF)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_Submission_2026_RELEASE.pdf)
+- [Narrated 3–5 minute product demo (MP4)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_YouTube_Demo_2026.mp4)
 - [Product vision](docs/PRODUCT_VISION.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 

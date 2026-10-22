@@ -1,52 +1,56 @@
-# Regional Kannada speech dataset audit
+# Regional Kannada speech source audit
 
-Verified on 19 October 2026 against the official dataset pages, published papers and access terms. No gated audio was downloaded.
+Verified on 21 October 2026 against publisher pages, repository metadata and the downloaded file headers. No gated corpus or large speech archive was downloaded.
 
 ## Release decision
 
-Kannadada Beru has not published a Vaani, IndicVoices or RESPIN clip in this release. All three repositories require an access agreement, and this workstation has no authorized Hugging Face token or RESPIN access grant. A district label alone also cannot establish a speaker's native variety. The product therefore publishes sourced regional text records, keeps Kannada voice counts at zero, and shows the existing Tulu recording only as a separate coastal-language example.
+The public app includes **12 CC0 human recordings as General Kannada references** and **zero verified Mysuru–Dharwad–Kalaburagi comparison sets**. The three regional controls remain disabled. The downloaded files passed byte-length, SHA-1/SHA-256 and Ogg container checks, but their Commons records do not state speaker region and independent listening review remains pending.
 
-## Dataset comparison
+This is a deliberate evidence boundary: Kannada language metadata is not regional pronunciation evidence.
 
-| Dataset | Kannada coverage and metadata | Speech character | Access and licence | MVP decision |
+## Sources checked without Hugging Face authentication
+
+| Source | What is publicly available | Region evidence | Access and rights | Decision |
 | --- | --- | --- | --- | --- |
-| [Vaani transcription subset](https://huggingface.co/datasets/ARTPARK-IISc/Vaani-transcription-part) | `audio/Kannada`; 59,085 train, 16,952 validation and 16,418 test rows. Fields include audio, language, gender, state, district and transcript. The official card reports 151.12 transcribed Kannada hours. | Natural, image-prompted speech with transcripts. Record-level transcript and locality still require listening checks. | Gated contact-sharing agreement and token required. Dataset card: CC BY 4.0. | Best first candidate after authorized access. No rows or clip IDs were accessible in this audit. |
-| [IndicVoices](https://huggingface.co/datasets/ai4bharat/IndicVoices) | `kannada`; 313,221 train and 4,126 validation rows. Fields include speaker ID, district, state, scenario, task, transcript variants and verification report. | Collection includes read, extempore and conversational speech. Prefer extempore or conversational samples. | Gated contact-sharing agreement and token required. Dataset card: CC BY 4.0. | Strong second candidate. No rows or clip IDs were accessible in this audit. |
-| [Vaani full corpus](https://huggingface.co/datasets/ARTPARK-IISc/Vaani) | `audio/Kannada`; 1,527,091 train rows. Fields include speaker ID, district, pincode, years of stay, transcript availability and transcript. | Natural, image-prompted speech; many rows are not transcribed. | Gated contact-sharing agreement and token required. Dataset card: CC BY 4.0. | Supplementary discovery source. Use only transcribed, individually reviewed rows. |
-| [RESPIN-S1.0](https://spiredatasets.ee.iisc.ac.in/respincorpus) | Kannada covers Central (Bellary), Coastal/Dakshin (Mangalore), Dharwad Kannada (Dharwad), Northeastern (Gulbarga) and Mysore Kannada (Mysore). The paper reports clean Kannada durations of 237.38, 245.03, 235.92, 248.10 and 228.13 hours respectively. | Read speech from agriculture and finance prompts, not spontaneous conversation. | Access form and acceptance of IISc terms required. Terms incorporate CC BY 4.0 attribution and notice duties. | Valuable research fallback, but not the lead source for an everyday listening showcase. No access grant was used. |
+| [Wikimedia Commons / Spell4Wiki](https://commons.wikimedia.org/wiki/Category:Files_uploaded_by_spell4wiki_in_kn) | Thousands of short Kannada pronunciation files. Twelve exact-word OGG files were selected and bundled. | The selected file pages identify Kannada, word, uploader and CC0, but no speaker region or recording locality. | Public direct download; CC0 1.0 on each selected file. | Integrated only as General Kannada references. Never counted as regional audio. |
+| [IISc NISP](https://github.com/iiscleap/NISP-Dataset) | Kannada and English read speech, transcripts, speaker IDs and a speaker-information list. The public repository identifies native/place-brought-up district and state. | Target records exist for Mysore (`Kan_0005`, `Kan_0046`), Dharwad (`Kan_0060`) and Gulbarga (`Kan_0022`, `Kan_0036`). This is speaker-origin metadata, not independent proof of a dialect pronunciation. | Repository README states CC BY 4.0. Kannada native audio is split into an approximately 1.53 GB archive. | Best public research lead, but not integrated: target transcripts do not contain a ready, controlled same-prompt set. Word extraction would require archive download, alignment and human review. |
+| [OpenSLR SLR79](https://www.openslr.org/79/) | Kannada single-speaker sentence recordings and transcript indexes; 2,186 female and 2,214 male transcript rows were inspected locally. | No regional labels in the published indexes. | Public; CC BY-SA 4.0. Audio archives total about 1.8 GB. | Not suitable for three-region comparison. Transcript indexes only were downloaded. |
+| [RESPIN-S1.0](https://spiredatasets.ee.iisc.ac.in/respincorpus) | Five documented Kannada varieties: Central/Bellary, Coastal/Mangalore, Dharwad, Northeastern/Gulbarga and Mysore. Read speech with transcripts. | Explicit corpus variety/location labels, but still dataset metadata rather than independent linguistic validation. | Application form and IISc terms required; attribution and notice duties apply. | Strong controlled-corpus candidate after authorized access, not publicly downloadable for this release. |
+| [LDC-IL Kannada Raw Speech Corpus](https://data.ldcil.org/kannada-raw-speech-corpus) | A large Kannada raw-speech resource described as covering regional dialects. | Regional coverage is described at corpus level; record-level suitability must be inspected after lawful access. | Approximately 115 GB with access conditions. | Not a lightweight public integration source. |
+| [Lingua Libre Kannada files](https://commons.wikimedia.org/wiki/Category:Lingua_Libre_pronunciation-kan) | Public human word recordings with language, speaker/uploader and transcript-like filenames. | The inspected records did not provide reliable Mysuru, Dharwad or Kalaburagi speaker provenance. | Public Commons files with per-file licence information. | Useful for General Kannada expansion only after the same checks; not regional evidence. |
 
-## Evidence boundaries
+## Downloaded General Kannada bundle
 
-- Vaani district, pincode and years-of-stay fields support discovery; they do not prove a native regional accent.
-- IndicVoices district and speaker fields allow controlled filtering; every selected utterance still needs transcript, naturalness and speaker-community checks.
-- RESPIN's five Kannada labels and locations are documented in the 2025 corpus paper. Its recordings are read speech, so the interface must not describe them as spontaneous daily conversation.
-- The dataset licences permit reuse with attribution after access conditions are accepted. Record-level suitability, privacy and publication approval still need review.
-- Tulu, Beary and Konkani remain distinct languages and are never counted as Kannada dialect samples.
+The 12 files are `ಅಕ್ಕ`, `ಕನ್ನಡ`, `ಗಾಳಿ`, `ತಾಯಿ`, `ತಂದೆ`, `ನೀರು`, `ಪುಸ್ತಕ`, `ಪ್ರೀತಿ`, `ಮಗು`, `ಮಳೆ`, `ಶಾಲೆ`, and `ಹಾಲು`. Eleven are credited to `Srf123`; `ತಾಯಿ` is credited to `Manilpt`. The app keeps the source page, source date, speaker/uploader, CC0 licence, byte length and both checksums in `public/audio/kannada/manifest.json`.
 
-## Candidate clip ledger
+Status of the three-region matrix:
 
-No candidate clip IDs have been recorded because the underlying gated rows were not lawfully accessible during this audit. Inventing IDs or choosing rows from metadata alone would weaken the evidence chain.
+- 12 General Kannada references available.
+- 36 target regional slots: 12 prompts × 3 regions.
+- 0 region-verified recordings.
+- 0 complete same-prompt comparison sets.
 
-## Small authorized pilot
+## Why NISP is not yet the comparison feature
 
-After the project owner accepts the Vaani and IndicVoices access conditions and provides an authorized token locally, the pilot should stream metadata first and inspect no more than ten Kannada recordings:
+NISP is public and genuinely useful because it provides speaker-origin district metadata. However, the five target speakers read different paragraph and unique-sentence lists. An intersection check did not find a clean ready-to-publish isolated-word set; common tokens occur inside longer sentences. Producing matched clips would require downloading the full Kannada native archive, locating the correct utterances, forced alignment or careful manual segmentation, replay verification, a second local-speaker review, and confirmation that clipped redistribution preserves the repository’s licence and attribution requirements.
 
-1. Filter for Karnataka, Kannada and the target districts around Dharwad, Mysuru, Udupi or Dakshina Kannada, Kalaburagi, Bidar and Raichur.
-2. Prefer IndicVoices conversational or extempore tasks and Vaani rows with a non-empty transcript.
-3. Listen to each row and check audio-transcript alignment, intelligibility and whether the utterance contains a useful everyday expression.
-4. Confirm what the speaker metadata actually establishes. Do not infer native variety from current district alone.
-5. Ask a suitable local speaker to review the linguistic match.
-6. Publish only records with a stable source ID, source URL, transcript, language, locality confidence, recording type, licence, attribution, rights check and publication approval.
+Therefore no 1.53 GB archive was downloaded merely to make the interface appear complete.
 
-The immediate user action is: sign in to Hugging Face, accept access for the Vaani transcription subset and IndicVoices, then create a read token and expose it locally as `HF_TOKEN`. Do not commit the token.
+## Permission-cleared collection plan
 
-## Sources
+The shortest credible path is a small controlled collection rather than an inferred dataset comparison:
 
-- [Vaani transcription subset](https://huggingface.co/datasets/ARTPARK-IISc/Vaani-transcription-part)
-- [IndicVoices](https://huggingface.co/datasets/ai4bharat/IndicVoices)
-- [Vaani full corpus](https://huggingface.co/datasets/ARTPARK-IISc/Vaani)
-- [Vaani district explorer](https://vaani.iisc.ac.in/dataset)
-- [RESPIN-S1.0 corpus paper](https://papers.nips.cc/paper_files/paper/2025/file/d88714d4f2c1e826d33d6c1eb1497ec9-Paper-Datasets_and_Benchmarks_Track.pdf)
-- [RESPIN terms](https://ee.iisc.ac.in/madasrdataset/RESPIN_Data_TAC.pdf)
-- [Modern Kannada dialect study](https://doi.org/10.1007/s10772-025-10243-8)
-- [A Manual of Modern Kannada](https://hasp.ub.uni-heidelberg.de/catalog/book/736)
+1. Record the same 10–12 prompts in Mysuru, Dharwad and Kalaburagi—30–36 final clips; two speakers per region are preferable for diversity.
+2. Recruit consenting adults who self-identify with the variety and document district of upbringing and approximate years lived there. Store current recording location separately.
+3. Record lossless WAV masters in a quiet room, then publish trimmed OGG derivatives only after approval.
+4. Capture the exact Kannada transcript, Romanization, English meaning, recording type, chosen public credit, consent record, licence and withdrawal state.
+5. Ask the speaker to replay and approve the final clip. Ask a second native/community reviewer to confirm transcript match and naturalness.
+6. Publish only when rights review, region-metadata review and linguistic review are all complete. Never publish contact details or raw consent documents.
+
+The working ledger is `data/regional-recording-pilot.csv`. A speaker-facing form is downloadable in the app at `/templates/regional-recording-intake.md`.
+
+## Acceptance rule for enabling a regional Play control
+
+A regional control can be enabled only when one record has all of the following: matching prompt ID, audio file, exact transcript, self-reported speaker-origin region, explicit publication permission, reusable licence or project display grant, public attribution preference, speaker replay approval, second human review, and a stable source/consent record ID.
+
+Dataset metadata alone never satisfies the human-review fields.

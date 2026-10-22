@@ -19,6 +19,7 @@ tmp/
 recordings/
 data/private/
 data/raw/
+.research-data/
 *.wav
 *.m4a
 *.webm

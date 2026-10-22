@@ -17,7 +17,10 @@ flowchart TB
     Atlas --> Geography[Local Karnataka GeoJSON]
     Atlas --> Profiles[31 bilingual district profiles]
     Regions --> Usage[Documented regional usages]
-    Regions --> Audio[Credited human Tulu audio]
+    Regions --> Audio[Credited human audio]
+    Voices --> Matrix[Typed three-region pronunciation matrix]
+    Matrix --> General[12 local CC0 General Kannada references]
+    Matrix --> Regional[36 disabled evidence-gated slots]
     Voices --> Evidence[Meaning locality context citation and status]
     Voices --> Filters[Place and meaning filters]
     Dictionary --> Shards[50 Alar dictionary shards]
@@ -35,7 +38,7 @@ flowchart TB
 3. **On-demand language data** divides the Alar dictionary into 50 Kannada-initial shards. The browser downloads only the section a visitor opens.
 4. **Local geography** lets MapLibre render the Karnataka district layer without a paid map token or third-party tracking request.
 5. **Private browser storage** holds contribution drafts on the visitor's device and exports them only after an explicit action.
-6. **Offline support** caches the public shell and previously opened static resources while keeping update handling predictable.
+6. **Offline support** caches the public shell, the 12 approved General Kannada OGG files and previously opened static resources while keeping update handling predictable.
 
 ## Language and audio flow
 
@@ -46,11 +49,13 @@ flowchart LR
     Context --> Experience[Public language experience]
 
     Recording[Human recording] --> Rights[Confirm transcript language locality credit and licence]
-    Rights --> Review[Community review and publication approval]
-    Review --> Player[Public pronunciation card]
+    Rights --> Review[Speaker replay and second community review]
+    Review --> Gate{All evidence complete?}
+    Gate -->|Yes| Player[Enable regional Play]
+    Gate -->|No| Disabled[Keep regional control disabled]
 ```
 
-The model keeps general dictionary definitions, regional usage, and pronunciation as separate kinds of evidence. The public `ಕುಡ್ಲ` recording includes its Tulu transcript, Karavali context, speaker credit, source link, and CC0 licence. It is not counted as regional Kannada audio.
+The model keeps general dictionary definitions, regional usage, General Kannada pronunciation and region-verified pronunciation as separate evidence types. Each of the 12 General Kannada records has a local audio path and public provenance but an explicit `regionClaim: none`. Each Mysuru, Dharwad and Kalaburagi slot is `recording_needed` until its own audio, transcript, origin metadata, consent, rights and human reviews are complete. The public `ಕುಡ್ಲ` recording remains a separate Tulu example and is not counted as regional Kannada audio.
 
 ## Accessibility and resilience
 
@@ -58,4 +63,4 @@ The interface uses semantic landmarks, visible focus states, large touch targets
 
 ## Release verification
 
-The release pipeline runs lint rules, strict TypeScript checks, 42 unit tests, a 49-route production build, and 48 browser journeys across Android-sized and desktop Chrome.
+The release pipeline runs lint rules, strict TypeScript checks, unit tests, a full production build, and browser journeys across Android-sized and desktop Chrome. Release evidence records the exact counts produced by the final run.

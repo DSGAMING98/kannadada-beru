@@ -6,7 +6,7 @@ describe("service worker release policy", () => {
   const source = fs.readFileSync(path.resolve(process.cwd(), "public/sw.js"), "utf8");
 
   it("pre-caches the public demo shell and maintains an offline fallback", () => {
-    for (const route of ["/explore", "/language", "/dictionary", "/play", "/compare", "/about", "/offline"]) {
+    for (const route of ["/explore", "/language", "/dictionary", "/voices", "/play", "/compare", "/about", "/offline"]) {
       expect(source).toContain(`"${route}"`);
     }
     expect(source).toContain("caches.match(\"/offline\")");
@@ -14,6 +14,8 @@ describe("service worker release policy", () => {
     expect(source).toContain('"/data/karnataka-districts-2011.geojson"');
     expect(source).toContain('"/data/alar/manifest.json"');
     expect(source).toContain('url.pathname.startsWith("/data/alar/")');
+    expect(source).toContain('url.pathname.startsWith("/audio/")');
+    expect(source).toContain("APPROVED_AUDIO");
   });
 
   it("does not cache private, contribution, authentication, moderation, or API routes", () => {

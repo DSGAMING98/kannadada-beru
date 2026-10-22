@@ -7,6 +7,7 @@ const outputDirectory = "public/showcase";
 const captures = [
   { route: "/", file: "home.png", language: "kn", fullPage: false },
   { route: "/voices", file: "voices.png", language: "en", fullPage: false },
+  { route: "/voices", file: "voices-audio.png", language: "en", selector: ".pronunciation-card", first: true },
   { route: "/compare", file: "compare.png", language: "en", fullPage: true },
   { route: "/dictionary", file: "dictionary.png", language: "kn", fullPage: false },
   { route: "/play", file: "play.png", language: "kn", fullPage: false },
@@ -27,7 +28,8 @@ try {
     await page.evaluate(() => document.fonts.ready);
     const path = `${outputDirectory}/${capture.file}`;
     if (capture.selector) {
-      await page.locator(capture.selector).screenshot({ path });
+      const target = capture.first ? page.locator(capture.selector).first() : page.locator(capture.selector);
+      await target.screenshot({ path });
     } else {
       await page.screenshot({ path, fullPage: capture.fullPage });
     }
