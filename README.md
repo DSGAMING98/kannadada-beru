@@ -278,7 +278,6 @@ Original project source code is available under the [MIT License](LICENSE). Thir
 - [4-minute live demo script](docs/DEMO_SCRIPT.md)
 - [Hackathon submission deck (PPTX)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_Submission_2026_RELEASE.pptx)
 - [Hackathon submission deck (PDF)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_Submission_2026_RELEASE.pdf)
-- [Narrated 3–5 minute product demo (MP4)](Kannadada%20Beru%20Final%20Presentation/Kannadada_Beru_YouTube_Demo_2026.mp4)
 - [Product vision](docs/PRODUCT_VISION.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 
