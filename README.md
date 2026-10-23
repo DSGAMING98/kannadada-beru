@@ -262,7 +262,7 @@ Current release evidence:
 
 Original project source code is available under the [MIT License](LICENSE). Third-party datasets and media retain their own licences and attribution requirements.
 
-## 🏆 Why this MVP stands out
+## 🏆 Why this MVP stands out?
 
 - **Immediately useful:** no account, secret, paid API, or external database is needed for the core experience.
 - **Built for real devices:** the large dictionary is sharded, the interface is touch-friendly, and the main journeys are exercised at Android and desktop sizes.
