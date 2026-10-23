@@ -120,10 +120,9 @@ test("regional voices showcase keeps evidence and language identity together", a
   await page.goto("/voices");
   await expect(page.getByRole("heading", { name: /ನುಡಿ, ನೆಲ ಮತ್ತು ದನಿಯ ನಡುವೆ|Where words meet place and voice/i })).toBeVisible();
   await expect(page.locator(".voices-ledger")).toContainText(/8\s*(ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ನುಡಿಗಳು|source-documented usages)/i);
-  await expect(page.locator(".voices-ledger")).toContainText(/0\s*(ಪ್ರಕಟಿತ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿಗಳು|published regional Kannada voices)/i);
+  await expect(page.locator(".voices-ledger")).toContainText(/5\s*(ಸಮುದಾಯ ಧ್ವನಿ ಪ್ರಾಂಪ್ಟ್‌ಗಳು|community voice prompts)/i);
   await expect(page.locator(".pronunciation-stats")).toContainText(/12\s*(ಸಾಮಾನ್ಯ ಕನ್ನಡ ಧ್ವನಿಗಳು|general Kannada voices)/i);
-  await expect(page.getByRole("button", { name: /recording needed/i })).toHaveCount(15);
-  await expect(page.getByRole("button", { name: /recording needed/i }).first()).toBeDisabled();
+  await expect(page.getByRole("link", { name: /contribute a voice/i })).toHaveCount(15);
   const pronunciationSearch = page.getByPlaceholder(/neeru, water/);
   await pronunciationSearch.fill("water");
   await expect(page.locator(".pronunciation-card")).toHaveCount(1);
@@ -139,23 +138,10 @@ test("regional voices showcase keeps evidence and language identity together", a
   await expect(page.getByText(/ಈ ಧ್ವನಿ ತುಳು ಭಾಷೆಯದ್ದು|This recording is Tulu and is not counted as regional Kannada/i)).toBeVisible();
 });
 
-test("regional voice intake exports a canonically named reviewed package", async ({ page }) => {
+test("the legacy intake path opens the finished contribution experience", async ({ page }) => {
   await page.goto("/voices/intake");
-  await expect(page.getByRole("heading", { name: /ನೈಜ ಪ್ರಾದೇಶಿಕ ಧ್ವನಿ ಸಂಗ್ರಹ|Authentic regional voice intake/i })).toBeVisible();
-  await page.getByLabel("Speaker’s self-reported region").selectOption("mysuru");
-  await page.getByLabel("Record or choose audio").setInputFiles("public/audio/kannada/neeru.ogg");
-  await page.getByLabel("Exact spoken Kannada transcript").fill("ಹೇಗಿದ್ದೀರಿ?");
-  await page.getByLabel("District where speaker grew up").fill("Mysuru");
-  await page.getByLabel("Approximate years lived there").fill("20");
-  await page.getByLabel("Recording date").fill("2026-10-22");
-  await page.getByLabel("Consent reference").fill("private-consent-001");
-  await page.getByLabel("Human reviewer name or ID").fill("reviewer-1");
-  await page.getByLabel("Review date").fill("2026-10-22");
-  for (const checkbox of await page.locator('.audio-intake-form input[type="checkbox"]').all()) await checkbox.check();
-  const downloadPromise = page.waitForEvent("download");
-  await page.getByRole("button", { name: /ಧ್ವನಿ \+ ಮಾಹಿತಿ ರಫ್ತು ಮಾಡಿ|Export audio \+ metadata/i }).click();
-  expect((await downloadPromise).suggestedFilename()).toBe("warm-greeting-mysuru.ogg");
-  await expect(page.getByText(/ಧ್ವನಿ ಮತ್ತು ಅದರ ಪರಿಶೀಲಿತ ಮಾಹಿತಿ ಕಡತಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿದೆ|Audio and its reviewed metadata sidecar were exported/i)).toBeVisible();
+  await expect(page).toHaveURL(/\/contribute\/audio$/);
+  await expect(page.getByRole("heading", { name: /ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿ ಕೊಡುಗೆ ನೀಡಿ|Contribute a regional Kannada voice/i })).toBeVisible();
 });
 
 test("regional audio contribution is private, consent-led and mobile ready", async ({ page }) => {
@@ -172,7 +158,7 @@ test("regional audio contribution is private, consent-led and mobile ready", asy
   await page.getByLabel("Consent name or signature").fill("Consenting speaker");
   await page.locator('input[name="adultConfirmed"]').check();
   await page.locator('input[name="consentToReviewAndPublish"]').check();
-  await page.getByRole("button", { name: /ಪರಿಶೀಲನೆಗೆ ಸಲ್ಲಿಸಿ|Submit for review/i }).click();
+  await page.getByRole("button", { name: /ಧ್ವನಿ ಕಳುಹಿಸಿ|Send contribution/i }).click();
   await expect(page.locator(".form-message")).toContainText(/ಕಡ್ಡಾಯ ಮಾಹಿತಿ ಮತ್ತು ಸಮ್ಮತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ|Transcript must contain Kannada script/i);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   expect(overflow).toBe(false);

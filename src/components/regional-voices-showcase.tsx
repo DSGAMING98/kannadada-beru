@@ -9,6 +9,7 @@ import { RegionalPronunciationExplorer } from "@/components/regional-pronunciati
 import { useInterfaceLanguage } from "@/components/interface-language";
 import { regionalAudioSamples } from "@/lib/regional-audio";
 import { regionalCandidates } from "@/lib/regional-candidates";
+import { regionalPrompts } from "@/lib/regional-pronunciation-pilot";
 import { getRegionBySlug, regions } from "@/lib/regions";
 
 export function RegionalVoicesShowcase() {
@@ -29,14 +30,14 @@ export function RegionalVoicesShowcase() {
     <RegionalPronunciationExplorer />
 
     <div className="voices-section-heading"><p className="eyebrow">{language === "kn" ? "ಪ್ರಕಟಿತ ಮೂಲದಲ್ಲಿರುವ ಸ್ಥಳೀಯ ಬಳಕೆ" : "Regional usage in published sources"}</p><h2>{language === "kn" ? "ಪದದ ರೂಪ, ಅರ್ಥ ಮತ್ತು ನೆಲದ ಸಂದರ್ಭ" : "Word form, meaning and local context"}</h2></div>
-    <div className="voices-promise"><Headphones aria-hidden="true" /><div><strong>{language === "kn" ? "ಕೇಳುವುದಕ್ಕೂ ಮೊದಲು ಅರ್ಥ ಮತ್ತು ಮೂಲವನ್ನು ನೋಡಿ" : "Meaning and source come before sound"}</strong><p>{language === "kn" ? "ಪ್ರಕಟಿತ ನುಡಿ, ಸಾಮಾನ್ಯ ಕನ್ನಡದ ಸಮೀಪದ ರೂಪ ಮತ್ತು ಸ್ಥಳೀಯ ಸಂದರ್ಭವನ್ನು ಒಂದೇ ಜಾಗದಲ್ಲಿ ನೋಡಬಹುದು. ನೈಜ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿ ಇನ್ನೂ ಅನುಮತಿ ಮತ್ತು ಸ್ಥಳೀಯ ಪರಿಶೀಲನೆಗಾಗಿ ಕಾಯುತ್ತಿದೆ." : "Each record keeps the published form, its closest standard comparison and local context together. Regional Kannada audio remains unpublished until permission and local review are complete."}</p></div></div>
+    <div className="voices-promise"><Headphones aria-hidden="true" /><div><strong>{language === "kn" ? "ಅರ್ಥ, ನೆಲ ಮತ್ತು ಧ್ವನಿ ಒಂದೇ ಕಥೆಯಲ್ಲಿ" : "Meaning, place and voice in one story"}</strong><p>{language === "kn" ? "ಪ್ರಕಟಿತ ನುಡಿ, ಸಾಮಾನ್ಯ ಕನ್ನಡದ ಸಮೀಪದ ರೂಪ ಮತ್ತು ಸ್ಥಳೀಯ ಸಂದರ್ಭವನ್ನು ಒಂದೇ ಜಾಗದಲ್ಲಿ ನೋಡಬಹುದು. ವಕ್ತಾರರ ಅನುಮತಿ ಮತ್ತು ನಿಖರ ಪಠ್ಯ ಹೊಂದಿದ ಧ್ವನಿಗಳು ಈ ಸಂಗ್ರಹವನ್ನು ವಿಸ್ತರಿಸುತ್ತವೆ." : "Each record keeps the published form, its closest standard comparison and local context together. Permission-cleared recordings with exact transcripts extend the collection."}</p></div></div>
 
     <div className="voices-controls">
       <label><span>{language === "kn" ? "ಪದ ಅಥವಾ ಅರ್ಥ" : "Word or meaning"}</span><div className="search-box"><Search aria-hidden="true" /><input aria-label="Search regional voices" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="ಅಗದೀ, onion, greeting…" /></div></label>
       <label><span>{language === "kn" ? "ಪ್ರದೇಶ" : "Region"}</span><select aria-label="Voice region" value={region} onChange={(event) => setRegion(event.target.value)}><option value="all">{language === "kn" ? "ಎಲ್ಲ ದಾಖಲೆಗಳು" : "All documented usages"}</option>{regions.filter((item) => regionalCandidates.some((record) => record.regionSlug === item.slug)).map((item) => <option key={item.slug} value={item.slug}>{item.nameKannada} · {item.nameEnglish}</option>)}</select></label>
     </div>
 
-    <div className="voices-ledger" aria-live="polite"><span><strong>{records.length}</strong>{language === "kn" ? "ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ನುಡಿಗಳು" : "source-documented usages"}</span><span><strong>0</strong>{language === "kn" ? "ಪ್ರಕಟಿತ ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿಗಳು" : "published regional Kannada voices"}</span><span><strong>{regionalAudioSamples.length}</strong>{language === "kn" ? "ಪ್ರತ್ಯೇಕ ಕರಾವಳಿ ಭಾಷೆಯ ಧ್ವನಿ" : "separate coastal-language voice"}</span></div>
+    <div className="voices-ledger" aria-live="polite"><span><strong>{records.length}</strong>{language === "kn" ? "ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿರುವ ನುಡಿಗಳು" : "source-documented usages"}</span><span><strong>{regionalPrompts.length}</strong>{language === "kn" ? "ಸಮುದಾಯ ಧ್ವನಿ ಪ್ರಾಂಪ್ಟ್‌ಗಳು" : "community voice prompts"}</span><span><strong>{regionalAudioSamples.length}</strong>{language === "kn" ? "ಪ್ರತ್ಯೇಕ ಕರಾವಳಿ ಭಾಷೆಯ ಧ್ವನಿ" : "separate coastal-language voice"}</span></div>
 
     <div className="voice-story-grid">
       {records.map((record) => {
@@ -48,7 +49,7 @@ export function RegionalVoicesShowcase() {
           <p className="voice-meaning">{record.englishMeaning}</p>
           {record.standardKannadaEquivalent && <p className="voice-standard"><strong>{language === "kn" ? "ಸಾಮಾನ್ಯ / ಮೂಲದಲ್ಲಿನ ಹೋಲಿಕೆ" : "Standard / source comparison"}</strong>{record.standardKannadaEquivalent}</p>}
           <p>{record.culturalContext}</p>
-          <div className="voice-evidence"><ShieldCheck size={17} /><span><strong>{language === "kn" ? "ಪ್ರಕಟಿತ ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿದೆ" : "Documented in a published source"}</strong>{language === "kn" ? "ಸ್ಥಳೀಯ ಸಮುದಾಯದ ಸ್ವತಂತ್ರ ಪರಿಶೀಲನೆ ಮತ್ತು ಹೊಂದಾಣಿಕೆಯ ಧ್ವನಿಮುದ್ರಣ ಇನ್ನೂ ಬಾಕಿ." : "Independent community review and a matching permission-cleared recording are still pending."}</span></div>
+          <div className="voice-evidence"><ShieldCheck size={17} /><span><strong>{language === "kn" ? "ಪ್ರಕಟಿತ ಮೂಲದಲ್ಲಿ ದಾಖಲಾಗಿದೆ" : "Documented in a published source"}</strong>{language === "kn" ? "ಧ್ವನಿಯನ್ನು ಸೇರಿಸುವಾಗ ನಿಖರ ಪಠ್ಯ, ಪ್ರದೇಶ ಮತ್ತು ವಕ್ತಾರರ ಅನುಮತಿಯನ್ನು ಇದೇ ದಾಖಲೆಗೆ ಜೋಡಿಸಲಾಗುತ್ತದೆ." : "Any accompanying voice keeps its exact transcript, region and speaker permission with this record."}</span></div>
           <footer><span>{itemRegion.nameKannada} · {itemRegion.nameEnglish}</span><a href={record.source.url} target="_blank" rel="noreferrer"><BookOpenText size={14} />{record.source.publisher}</a></footer>
         </article>;
       })}
@@ -56,6 +57,6 @@ export function RegionalVoicesShowcase() {
 
     <section className="voice-audio-boundary"><div><p className="eyebrow">{language === "kn" ? "ಭಾಷೆಯ ಗುರುತು ಸ್ಪಷ್ಟವಾಗಿರಲಿ" : "Keep the language identity clear"}</p><h2>{language === "kn" ? "ಕರಾವಳಿಯ ತುಳು ಧ್ವನಿ" : "A Tulu voice from the coast"}</h2><p>{language === "kn" ? "ಈ ಧ್ವನಿ ತುಳು ಭಾಷೆಯದ್ದು; ಇದನ್ನು ಪ್ರಾದೇಶಿಕ ಕನ್ನಡವೆಂದು ಎಣಿಸಲಾಗಿಲ್ಲ. ಕರಾವಳಿಯ ಬಹುಭಾಷಾ ಬದುಕಿನ ಸ್ವತಂತ್ರ ಭಾಗವಾಗಿ ನೀಡಲಾಗಿದೆ." : "This recording is Tulu and is not counted as regional Kannada. It appears as its own part of the coast's multilingual life."}</p></div>{regionalAudioSamples.map((sample) => <RegionalAudioPlayer key={sample.id} sample={sample} />)}</section>
 
-    <div className="voices-next"><Volume2 /><div><strong>{language === "kn" ? "ಮೂರು ಪ್ರದೇಶಗಳ ನೈಜ ಧ್ವನಿ ಸೇರಿಸಿ" : "Add authentic voices from three regions"}</strong><p>{language === "kn" ? "ಐದು ಒಂದೇ-ಅರ್ಥದ ಪ್ರಾಂಪ್ಟ್‌ಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ; ಸಮ್ಮತಿಯೊಂದಿಗೆ ನಿಮ್ಮ ಸಹಜ ನುಡಿಯನ್ನು ಖಾಸಗಿ ಪರಿಶೀಲನೆಗೆ ಸಲ್ಲಿಸಿ." : "Choose one of five shared-meaning prompts and submit your natural expression to a private, consent-led review queue."}</p></div><Link className="button button-secondary" href="/contribute/audio">{language === "kn" ? "ಧ್ವನಿ ಕೊಡುಗೆ ನೀಡಿ" : "Contribute a voice"}<ArrowRight size={16} /></Link></div>
+    <div className="voices-next"><Volume2 /><div><strong>{language === "kn" ? "ಮೂರು ಪ್ರದೇಶಗಳ ನೈಜ ಧ್ವನಿ ಸೇರಿಸಿ" : "Add authentic voices from three regions"}</strong><p>{language === "kn" ? "ಐದು ಒಂದೇ-ಅರ್ಥದ ಪ್ರಾಂಪ್ಟ್‌ಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಸಹಜ ನುಡಿಯನ್ನು ಅನುಮತಿಯೊಂದಿಗೆ ಸುರಕ್ಷಿತವಾಗಿ ಕಳುಹಿಸಿ." : "Choose one of five shared-meaning prompts and securely contribute your natural expression with permission."}</p></div><Link className="button button-secondary" href="/contribute/audio">{language === "kn" ? "ಧ್ವನಿ ಕೊಡುಗೆ ನೀಡಿ" : "Contribute a voice"}<ArrowRight size={16} /></Link></div>
   </section>;
 }

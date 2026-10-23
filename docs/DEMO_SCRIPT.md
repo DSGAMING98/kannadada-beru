@@ -12,7 +12,7 @@ From the homepage, open **Discover regional voices**.
 
 This is the heart of the product: one focused place where a visitor can search source-documented regional usages, filter them by region, and understand each expression in Kannada, Romanized Kannada, and English. Every card keeps the local form beside its standard comparison, locality, cultural context, and source.
 
-Point out the evidence ledger. Regional Kannada sound is not manufactured or guessed. It appears only when the recording, transcript, speaker locality, permission, and community review all match. The public Tulu recording is deliberately presented as Tulu—not mislabeled as a Kannada dialect.
+Point out the collection summary. Every published voice keeps its transcript, self-reported region, attribution and permission together. The public Tulu recording is presented as Tulu, with its own place in the coast's multilingual story.
 
 ## 2. Explore Karnataka · 1:05–1:40
 
@@ -40,16 +40,16 @@ Open **Pada Beru**.
 
 The ten-round mini-game turns dictionary discovery into a quick Kannada–English meaning challenge with a score, streak, hints, and optional device pronunciation. It gives younger visitors and first-time learners a memorable way to return to the language.
 
-## 6. Contribute without losing control · 3:15–3:40
+## 6. Share a regional voice · 3:15–3:40
 
-Open **Contribute**.
+Open **Share your voice**.
 
-A visitor can prepare a structured local-language record with its meaning, place, context, and permission details. The draft stays on the device and nothing is silently uploaded. The contributor chooses when to export it for review. This makes community participation understandable and privacy-conscious.
+Choose one of five shared meanings, select Mysuru, Dharwad or Kalaburagi, and record directly on a phone. The contributor supplies the exact Kannada transcript, chooses how to be credited, grants publication permission and sends the clip securely to the private collection.
 
 ## Closing · 3:40–4:00
 
 Kannadada Beru is already a complete, installable public experience: 31 district stories, a 156,650-entry dictionary, regional discovery, careful comparison, real attributed audio, a game, and a private contribution workspace. It is built for Android-sized and desktop screens and verified through the full public journey.
 
-Our goal is simple: let every person from Karnataka find a familiar word, understand the land and people around it, and—when permission and evidence are ready—hear a real community voice.
+Our goal is simple: let every person from Karnataka find a familiar word, understand the land and people around it, and hear the living voices that carry it forward.
 
 **ನಮ್ಮ ನುಡಿ · ನಮ್ಮ ಬೇರು · ನಮ್ಮ ಹೆಮ್ಮೆ.**

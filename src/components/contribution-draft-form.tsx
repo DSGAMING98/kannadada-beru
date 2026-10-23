@@ -115,7 +115,7 @@ export function ContributionDraftForm() {
     </form>
     <aside className="recording-kit" aria-labelledby="recording-kit-title">
       <FileAudio aria-hidden="true" />
-      <div><p className="eyebrow">{language === "kn" ? "ಮೈಸೂರು · ಧಾರವಾಡ · ಕಲಬುರಗಿ" : "Mysuru · Dharwad · Kalaburagi"}</p><h2 id="recording-kit-title">{language === "kn" ? "ಒಂದೇ ಪದದ ಧ್ವನಿ ಸಂಗ್ರಹ ಕಿಟ್" : "Same-word recording kit"}</h2><p>{language === "kn" ? "ಸ್ಥಳೀಯ ವಕ್ತಾರರ ಅನುಮತಿ, ಬೆಳೆದ ಜಿಲ್ಲೆ, ನಿಖರ ಪಠ್ಯ ಮತ್ತು ಎರಡನೇ ಮಾನವ ಪರಿಶೀಲನೆಯನ್ನು ಒಂದೇ ದಾಖಲೆಯಲ್ಲಿ ಇಡಿ. ಧ್ವನಿಯನ್ನು ಈ ತಾಣವು ನೇರವಾಗಿ ಸಂಗ್ರಹಿಸುವುದಿಲ್ಲ." : "Use one record to capture speaker consent, district of upbringing, the exact prompt and a second human review. This site does not upload or collect the recording itself."}</p></div>
+      <div><p className="eyebrow">{language === "kn" ? "ಮೈಸೂರು · ಧಾರವಾಡ · ಕಲಬುರಗಿ" : "Mysuru · Dharwad · Kalaburagi"}</p><h2 id="recording-kit-title">{language === "kn" ? "ಒಂದೇ ಪದದ ಧ್ವನಿ ಸಂಗ್ರಹ ಕಿಟ್" : "Same-word recording kit"}</h2><p>{language === "kn" ? "ವಕ್ತಾರರ ಅನುಮತಿ, ಬೆಳೆದ ಜಿಲ್ಲೆ, ನಿಖರ ಪಠ್ಯ ಮತ್ತು ಪ್ರಾದೇಶಿಕ ದೃಢೀಕರಣವನ್ನು ಒಂದೇ ದಾಖಲೆಯಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿ ಇಡಿ." : "Keep speaker permission, district of upbringing, the exact prompt and regional verification together in one clear record."}</p></div>
       <a className="button button-secondary" href="/templates/regional-recording-intake.md" download><Download size={18} />{language === "kn" ? "ಸಮ್ಮತಿ ನಮೂನೆ ಪಡೆಯಿರಿ" : "Download consent form"}</a>
     </aside>
   </section>;

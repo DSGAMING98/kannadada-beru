@@ -13,9 +13,9 @@ Regional Kannada is often learned through family, neighbourhood, work, travel, a
 1. **Kannada leads the interface.** English and Romanization improve access without replacing Kannada.
 2. **Place provides context.** Districts and regions help visitors navigate cultural stories.
 3. **Every source stays visible.** Dictionary entries, regional examples, and recordings retain clear attribution.
-4. **Human voices keep their identity.** General Kannada audio is labelled without a regional claim. A regional Play control appears only with matching transcript, self-reported speaker origin, credit, reuse rights, speaker approval and second human review. Tulu and other coastal languages remain distinct from Kannada.
+4. **Community voices keep their identity.** General Kannada audio is labelled without a regional claim. Regional recordings keep their transcript, self-reported speaker origin, chosen credit and publication permission together. Tulu and other coastal languages remain distinct from Kannada.
 5. **Learning should feel joyful.** Search, maps, comparison, and Pada Beru turn exploration into participation.
-6. **Privacy remains understandable.** Contribution drafts stay on the visitor's device until deliberately exported.
+6. **Privacy remains understandable.** Invited recordings go to private storage and contact details never appear on public pages.
 
 ## Audiences
 

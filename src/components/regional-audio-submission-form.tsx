@@ -32,7 +32,7 @@ export function RegionalAudioSubmissionForm() {
     setPreviewUrl(url);
   }
 
-  async function submitForReview(event: FormEvent<HTMLFormElement>) {
+  async function submitContribution(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!audio) {
       setMessage(language === "kn" ? "ಮೊದಲು ಧ್ವನಿಯನ್ನು ದಾಖಲಿಸಿ ಅಥವಾ ಆರಿಸಿ." : "Record or choose an audio file first.");
@@ -69,7 +69,7 @@ export function RegionalAudioSubmissionForm() {
       return;
     }
     setSubmitting(true);
-    setMessage(language === "kn" ? "ಧ್ವನಿಯನ್ನು ಖಾಸಗಿ ಪರಿಶೀಲನಾ ಸಾಲಿಗೆ ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…" : "Sending audio to the private review queue…");
+    setMessage(language === "kn" ? "ಧ್ವನಿಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…" : "Sending your recording securely…");
     try {
       await upload(`review-submissions/${submissionId}/audio.${audioExtension(audio)}`, audio, {
         access: "private",
@@ -78,7 +78,7 @@ export function RegionalAudioSubmissionForm() {
         headers: { "x-contributor-code": String(form.get("contributorCode")) },
       });
       setSubmittedId(submissionId);
-      setMessage(language === "kn" ? "ನಿಮ್ಮ ಧ್ವನಿ ಪರಿಶೀಲನೆಗೆ ಸುರಕ್ಷಿತವಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ. ಅದು ಇನ್ನೂ ಪ್ರಕಟವಾಗಿಲ್ಲ." : "Your voice was submitted securely for review. It has not been published.");
+      setMessage(language === "kn" ? "ನಿಮ್ಮ ಧ್ವನಿ ಸುರಕ್ಷಿತವಾಗಿ ತಲುಪಿದೆ. ಧನ್ಯವಾದಗಳು!" : "Your voice contribution arrived safely. Thank you!");
       formElement.reset();
       selectAudio(null);
     } catch (error) {
@@ -89,15 +89,15 @@ export function RegionalAudioSubmissionForm() {
   }
 
   return <section className="shell public-audio-contribution" aria-labelledby="public-audio-title">
-    <div className="submission-principle"><ShieldCheck aria-hidden="true" /><div><strong>{language === "kn" ? "ಕೊಡುಗೆ ≠ ತಕ್ಷಣದ ಪ್ರಕಟಣೆ" : "Contribution ≠ automatic publication"}</strong><p>{language === "kn" ? "ಪ್ರತಿ ಧ್ವನಿ ಖಾಸಗಿ ಪರಿಶೀಲನಾ ಸಾಲಿಗೆ ಹೋಗುತ್ತದೆ. ಪಠ್ಯ, ಸಮ್ಮತಿ, ಧ್ವನಿ ಗುಣಮಟ್ಟ ಮತ್ತು ಸ್ವಯಂ ತಿಳಿಸಿದ ಪ್ರದೇಶವನ್ನು ಮಾನವರು ಪರಿಶೀಲಿಸಿದ ನಂತರ ಮಾತ್ರ ಅತ್ಯುತ್ತಮ ಹೊಂದಾಣಿಕೆಯ ಧ್ವನಿಯನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ." : "Every recording enters a private review queue. Only the strongest suitable clip is added after humans check its transcript, consent, audio quality and self-reported region."}</p></div></div>
+    <div className="submission-principle"><ShieldCheck aria-hidden="true" /><div><strong>{language === "kn" ? "ಸುರಕ್ಷಿತ ಮತ್ತು ಸಮ್ಮತಿ ಆಧಾರಿತ ಕೊಡುಗೆ" : "Private, permission-led contribution"}</strong><p>{language === "kn" ? "ನಿಮ್ಮ ಧ್ವನಿ ಖಾಸಗಿಯಾಗಿ ಸಂಗ್ರಹವಾಗುತ್ತದೆ. ಪಠ್ಯ, ಅನುಮತಿ, ಧ್ವನಿ ಗುಣಮಟ್ಟ ಮತ್ತು ನೀವು ತಿಳಿಸಿದ ಪ್ರದೇಶದ ಮಾಹಿತಿ ಹೊಂದಿದ ಆಯ್ದ ಧ್ವನಿಗಳು ಮಾತ್ರ ಸಾರ್ವಜನಿಕ ಸಂಗ್ರಹಕ್ಕೆ ಸೇರುತ್ತವೆ." : "Your recording stays private. Selected clips join the public collection only when the transcript, permission, audio quality and self-reported region are complete."}</p></div></div>
 
     <div className="audio-prompt-list">
       {regionalPrompts.map((prompt) => <article key={prompt.id}><span>{prompt.number}</span><div><strong lang="kn">{prompt.meaningKannada}</strong><p>{prompt.meaningEnglish}</p><small>{prompt.speakerDirection}</small></div></article>)}
     </div>
 
-    {submittedId ? <div className="submission-success" role="status"><CheckCircle2 aria-hidden="true" /><div><strong>{language === "kn" ? "ಪರಿಶೀಲನೆಗೆ ಸಲ್ಲಿಸಲಾಗಿದೆ" : "Submitted for review"}</strong><p>{language === "kn" ? "ಈ ಗುರುತನ್ನು ಉಳಿಸಿಕೊಳ್ಳಿ:" : "Keep this reference:"} <code>{submittedId}</code></p></div></div> : null}
+    {submittedId ? <div className="submission-success" role="status"><CheckCircle2 aria-hidden="true" /><div><strong>{language === "kn" ? "ಕೊಡುಗೆ ತಲುಪಿದೆ" : "Contribution received"}</strong><p>{language === "kn" ? "ಈ ಗುರುತನ್ನು ಉಳಿಸಿಕೊಳ್ಳಿ:" : "Keep this reference:"} <code>{submittedId}</code></p></div></div> : null}
 
-    <form className="contribution-form audio-submission-form" onSubmit={submitForReview}>
+    <form className="contribution-form audio-submission-form" onSubmit={submitContribution}>
       <div className="form-heading"><p className="eyebrow">{language === "kn" ? "ನಿಮ್ಮ ನುಡಿ · ನಿಮ್ಮ ಧ್ವನಿ" : "Your expression · your voice"}</p><h2 id="public-audio-title">{language === "kn" ? "ಪ್ರಾದೇಶಿಕ ಕನ್ನಡ ಧ್ವನಿ ಕೊಡುಗೆ ನೀಡಿ" : "Contribute a regional Kannada voice"}</h2><p>{language === "kn" ? "ಕೆಳಗಿನ ಅರ್ಥಗಳಲ್ಲಿ ಒಂದನ್ನು ಆರಿಸಿ, ನಿಮ್ಮ ಪ್ರದೇಶದಲ್ಲಿ ಸಹಜವಾಗಿ ಹೇಳುವ ರೀತಿಯಲ್ಲಿ ದಾಖಲಿಸಿ. ಒಂದೇ ಪದಗಳನ್ನು ಬಳಸಬೇಕಿಲ್ಲ; ಅರ್ಥ ಒಂದೇ ಇರಬೇಕು." : "Choose one meaning and record how you naturally say it in your region. The wording may differ; the intended meaning must stay the same."}</p></div>
       <div className="form-grid">
         <label><span>{language === "kn" ? "ಕೊಡುಗೆ ಪ್ರಾಂಪ್ಟ್" : "Contribution prompt"}</span><select name="promptId" aria-label="Contribution prompt" required defaultValue={regionalPrompts[0].id}>{regionalPrompts.map((prompt) => <option key={prompt.id} value={prompt.id}>{prompt.number}. {prompt.meaningEnglish}</option>)}</select></label>
@@ -119,9 +119,9 @@ export function RegionalAudioSubmissionForm() {
         <label className="checkbox-label"><input type="checkbox" name="consentToReviewAndPublish" value="yes" /><span>{language === "kn" ? "ಆಯ್ದ ಷರತ್ತಿನಡಿ ಪರಿಶೀಲನೆಗಾಗಿ ಸಂಗ್ರಹಿಸಲು ಮತ್ತು ಆಯ್ಕೆಯಾದರೆ ಧ್ವನಿ, ಪಠ್ಯ, ಪ್ರದೇಶದ ಮಾಹಿತಿಯನ್ನು ಪ್ರಕಟಿಸಲು ಅನುಮತಿ ನೀಡುತ್ತೇನೆ." : "I permit private review and, if selected, publication of the audio, transcript and region metadata under the chosen terms."}</span></label>
         <label className="sr-only" aria-hidden="true"><span>Website</span><input name="website" tabIndex={-1} autoComplete="off" /></label>
       </div>
-      <div className="form-actions"><button className="button button-primary" type="submit" disabled={submitting}>{submitting ? <LoaderCircle className="spin" size={18} /> : <Send size={18} />}{language === "kn" ? "ಪರಿಶೀಲನೆಗೆ ಸಲ್ಲಿಸಿ" : "Submit for review"}</button></div>
+      <div className="form-actions"><button className="button button-primary" type="submit" disabled={submitting}>{submitting ? <LoaderCircle className="spin" size={18} /> : <Send size={18} />}{language === "kn" ? "ಧ್ವನಿ ಕಳುಹಿಸಿ" : "Send contribution"}</button></div>
       <p className="form-message" aria-live="polite">{message}</p>
-      <div className="private-upload-note"><LockKeyhole aria-hidden="true" /><span>{language === "kn" ? "ಧ್ವನಿ ಖಾಸಗಿ ಸಂಗ್ರಹಕ್ಕೆ ಮಾತ್ರ ಹೋಗುತ್ತದೆ. ಪರಿಶೀಲನೆ ಪೂರ್ಣವಾಗುವವರೆಗೆ ಸಾರ್ವಜನಿಕವಾಗಿ ಕೇಳಲಾಗುವುದಿಲ್ಲ." : "Your recording goes only to private storage and cannot be played publicly until review is complete."}</span></div>
+      <div className="private-upload-note"><LockKeyhole aria-hidden="true" /><span>{language === "kn" ? "ನಿಮ್ಮ ಧ್ವನಿ ಖಾಸಗಿ ಸಂಗ್ರಹಕ್ಕೆ ಹೋಗುತ್ತದೆ ಮತ್ತು ನೀವು ಆರಿಸಿದ ಅನುಮತಿಯಡಿ ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ." : "Your recording goes to private storage and is used only under the permission you choose."}</span></div>
     </form>
   </section>;
 }

@@ -1,6 +1,6 @@
 # Regional Kannada recording consent and intake
 
-This form is for a five-meaning pilot across Mysuru, Dharwad and Kalaburagi. Speakers should express each shared meaning in their own natural regional Kannada; they do not need to repeat identical wording. Participation is voluntary. A recording is not published until the speaker and reviewer checks are complete.
+This form supports five shared meanings across Mysuru, Dharwad and Kalaburagi. Speakers can express each meaning in their own natural regional Kannada; identical wording is not required. Participation is voluntary, and every published clip keeps its permission, transcript and regional context together.
 
 ## Speaker and place
 
@@ -37,16 +37,16 @@ Speaker signature or recorded consent reference:
 
 Date:
 
-## Review gate
+## Publication checklist
 
 - [ ] Speaker replayed and approved the final clip.
 - [ ] Transcript exactly matches the audio.
 - [ ] The spoken expression preserves the selected prompt’s intended meaning.
 - [ ] Region metadata is self-reported and not inferred from a current address.
-- [ ] A second native/community reviewer confirmed the prompt and naturalness.
+- [ ] A native community language steward confirmed the prompt and naturalness.
 - [ ] Rights and chosen public attribution were checked.
 - [ ] No private contact details are embedded in the public file or metadata.
 
-Reviewer name/ID:
+Language steward name/ID:
 
-Review date and notes:
+Verification date and notes:
